@@ -12,19 +12,19 @@ npm install --save siero
 
 ## Supported Types
 
-| Primitives       | Errors                | Typed Arrays              | Others              |
-| ---------------- | --------------------- | ------------------------- | ------------------- |
-| [`BigInt`][0]    | [`Error`][6]          | [`BigInt64Array`][13]     | [`Array`][24]       |
-| [`Boolean`][1]   | [`EvalError`][7]      | [`BigUint64Array`][14]    | [`ArrayBuffer`][25] |
-| [`Null`][2]      | [`RangeError`][8]     | [`Float32Array`][15]      | [`Date`][26]        |
-| [`Number`][3]    | [`ReferenceError`][9] | [`Float64Array`][16]      | [`RegExp`][27]      |
-| [`String`][4]    | [`SyntaxError`][10]   | [`Int8Array`][17]         | [`Map`][28]         |
-| [`Symbol`][31]   | [`TypeError`][11]     | [`Int16Array`][18]        | [`Set`][29]         |
-| [`Undefined`][5] | [`URIError`][12]      | [`Int32Array`][19]        | [`PlainObject`][30] |
-|                  |                       | [`Uint8Array`][20]        |                     |
-|                  |                       | [`Uint16Array`][21]       |                     |
-|                  |                       | [`Uint32Array`][22]       |                     |
-|                  |                       | [`Uint8ClampedArray`][23] |                     |
+| Primitives       | Boxed Primitives | Errors                | Typed Arrays              | Others              |
+| ---------------- | ---------------- | --------------------- | ------------------------- | ------------------- |
+| [`BigInt`][0]    | [`BigInt`][0]    | [`Error`][6]          | [`BigInt64Array`][13]     | [`Array`][24]       |
+| [`Boolean`][1]   | [`Boolean`][1]   | [`EvalError`][7]      | [`BigUint64Array`][14]    | [`ArrayBuffer`][25] |
+| [`Null`][2]      | [`Number`][3]    | [`RangeError`][8]     | [`Float32Array`][15]      | [`Date`][26]        |
+| [`Number`][3]    | [`String`][4]    | [`ReferenceError`][9] | [`Float64Array`][16]      | [`RegExp`][27]      |
+| [`String`][4]    | [`Symbol`][31]   | [`SyntaxError`][10]   | [`Int8Array`][17]         | [`Map`][28]         |
+| [`Symbol`][31]   |                  | [`TypeError`][11]     | [`Int16Array`][18]        | [`Set`][29]         |
+| [`Undefined`][5] |                  | [`URIError`][12]      | [`Int32Array`][19]        | [`PlainObject`][30] |
+|                  |                  |                       | [`Uint8Array`][20]        |                     |
+|                  |                  |                       | [`Uint16Array`][21]       |                     |
+|                  |                  |                       | [`Uint32Array`][22]       |                     |
+|                  |                  |                       | [`Uint8ClampedArray`][23] |                     |
 
 [0]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt
 [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean

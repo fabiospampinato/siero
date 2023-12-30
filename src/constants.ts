@@ -9,6 +9,12 @@ import String from './types/string';
 import Symbol from './types/symbol';
 import Undefined from './types/undefined';
 
+import BoxedBigInt from './types/boxed_bigint';
+import BoxedBoolean from './types/boxed_boolean';
+import BoxedNumber from './types/boxed_number';
+import BoxedString from './types/boxed_string';
+import BoxedSymbol from './types/boxed_symbol';
+
 import Array from './types/array';
 import ArrayBuffer from './types/array_buffer';
 import Date from './types/date';
@@ -50,6 +56,12 @@ const TYPES = [
   String,
   Symbol,
   Undefined,
+
+  BoxedBigInt,
+  BoxedBoolean,
+  BoxedNumber,
+  BoxedString,
+  BoxedSymbol,
 
   Array,
   ArrayBuffer,

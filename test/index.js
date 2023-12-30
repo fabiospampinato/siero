@@ -174,6 +174,37 @@ describe ( 'Siero', () => {
 
     });
 
+    it ( 'boxed bigint', () => {
+
+      testSerialization ( Object ( 123n ) );
+
+    });
+
+    it ( 'boxed boolean', () => {
+
+      testSerialization ( Object ( true ) );
+      testSerialization ( Object ( false ) );
+
+    });
+
+    it ( 'boxed number', () => {
+
+      testSerialization ( Object ( 123 ) );
+
+    });
+
+    it ( 'boxed string', () => {
+
+      testSerialization ( Object ( 'foo' ) );
+
+    });
+
+    it ( 'boxed symbol', () => {
+
+      testSerialization ( Object ( Symbol () ) );
+
+    });
+
     it ( 'error', () => {
 
       testSerialization ( new Error () );

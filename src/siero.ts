@@ -50,8 +50,9 @@ class Siero {
       }
     }
 
+    const type = typeof value;
     const Constructor = value?.constructor;
-    if ( Constructor !== undefined ) {
+    if ( type === 'object' && Constructor !== undefined ) {
       const a = this.constructor2type.get ( Constructor );
       if ( a ) {
         const id = this.type2id.get ( a );
@@ -60,7 +61,6 @@ class Siero {
       }
     }
 
-    const type = typeof value;
     if ( type !== undefined ) {
       const a = this.typeof2type.get ( type );
       if ( a ) {
