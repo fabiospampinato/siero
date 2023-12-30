@@ -2,6 +2,7 @@
 /* IMPORT */
 
 import Packer from '../packer';
+import {map} from '../utils';
 import Type from './type';
 
 /* MAIN */
@@ -16,7 +17,7 @@ class _Array extends Type<Array<unknown>> {
 
   serialize ( value: Array<unknown> ): string {
 
-    const values = value.map ( this.siero.serialize );
+    const values = map ( value, this.siero.serialize );
     const packed = Packer.pack ( values );
 
     return packed;

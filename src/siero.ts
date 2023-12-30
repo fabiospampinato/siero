@@ -6,6 +6,7 @@ import type {TypeInstance} from './types';
 
 /* MAIN */
 
+//TODO: Maybe preserve holes in arrays
 //TODO: Maybe make types fully configurable, or at least extendable
 //TODO: Maybe have dedicated true/false nodes
 //TODO: Preserve arrow/normal/async functions

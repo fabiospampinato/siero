@@ -23,8 +23,8 @@ describe ( 'Siero', () => {
       testSerialization ( [] );
       testSerialization ( [true, false, 0, -0, NaN, null, undefined, 0n, 123n, 'foo', new Date (), /re/, {}] );
       testSerialization ( [[[[[]]]]] );
-
-      // testSerialization ( [,,] ); //TODO
+      testSerialization ( [undefined, undefined, undefined] );
+      testSerialization ( [,,] );
 
     });
 

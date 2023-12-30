@@ -7,6 +7,20 @@ const castArray = <T> ( value: T | T[] ): T[] => {
 
 };
 
+const map = <T, R> ( values: T[], iterator: ( value: T, index: number, arr: T[] ) => R ): R[] => { // Accounting for holey arrays also
+
+  const mapped: R[] = new Array ( values.length );
+
+  for ( let i = 0, l = values.length; i < l; i++ ) {
+
+    mapped[i] = iterator ( values[i], i, values );
+
+  }
+
+  return mapped;
+
+};
+
 /* EXPORT */
 
-export {castArray};
+export {castArray, map};
