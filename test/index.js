@@ -96,10 +96,11 @@ describe ( 'Siero', () => {
 
       testSerialization ( { 1: true, 2: false, 3: 0, 4: -0, 5: NaN, 6: null, 7: undefined, 8: 0n, 9: 123n, 10: 'foo', 11: new Date (), 12: /re/, 13: [] } );
       testSerialization ( { foo: { bar: {}, baz: {} } } );
+      testSerialization ( { foo: undefined } );
       testSerialization ( { length: 1 } );
 
-      // testSerialization ( Object.create ( null ) ); //TODO
-      // testSerialization ( { foo: undefined } ); //TODO
+      testSerialization ( Object.create ( null ) );
+      testSerialization ( Object.create ( null, { foo: { value: 123 } } ) );
 
     });
 

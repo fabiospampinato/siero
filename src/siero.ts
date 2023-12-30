@@ -6,21 +6,6 @@ import type {TypeInstance} from './types';
 
 /* MAIN */
 
-//TODO: Maybe preserve holes in arrays
-//TODO: Maybe make types fully configurable, or at least extendable
-//TODO: Maybe have dedicated true/false nodes
-//TODO: Preserve arrow/normal/async functions
-//TODO: Preserve configurable/enumerable flags
-//TODO: Preserve frozen/sealed/extensible
-//TODO: Preserve symbol properties
-//TODO: Support null-prototype objects
-//TODO: Support AggregateError
-//TODO: Support boxed primitive
-//TODO: Support DataView
-//TODO: Support Function
-//TODO: Support Promise
-//TODO: Support Symbol
-
 class Siero {
 
   /* VARIABLES */

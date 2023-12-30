@@ -7,7 +7,7 @@ const castArray = <T> ( value: T | T[] ): T[] => {
 
 };
 
-const map = <T, R> ( values: T[], iterator: ( value: T, index: number, arr: T[] ) => R ): R[] => { // Accounting for holey arrays also
+const map = <T, R> ( values: T[], iterator: ( value: T, index: number, arr: T[] ) => R ): R[] => { // Handling holey arrays also
 
   const mapped: R[] = new Array ( values.length );
 
