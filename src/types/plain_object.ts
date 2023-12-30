@@ -26,7 +26,7 @@ class _PlainObject extends Type<Record<string, unknown>> {
 
   /* API */
 
-  serialize ( value: Record<string, unknown> ): string {
+  serialize ( value: Record<number | string | symbol, unknown> ): string {
 
     const flagProtoless = isProtoless ( value ) ? FLAG_PROTOLESS : 0;
     const flagExtensible = isExtensible ( value ) ? FLAG_EXTENSIBLE : 0;
@@ -34,16 +34,20 @@ class _PlainObject extends Type<Record<string, unknown>> {
     const flagSealed = isSealed ( value ) ? FLAG_SEALED : 0;
     const flags = `${flagProtoless | flagExtensible | flagFrozen | flagSealed}`;
 
-    const keys = this.siero.serialize ( Object.keys ( value ) );
-    const values = this.siero.serialize ( Object.values ( value ) );
+    const stringKeys = this.siero.serialize ( Object.keys ( value ) );
+    const stringValues = this.siero.serialize ( Object.values ( value ) );
 
-    const packed = Packer.pack ([ flags, keys, values ]);
+    const symbols = Object.getOwnPropertySymbols ( value );
+    const symbolKeys = this.siero.serialize ( symbols );
+    const symbolValues = this.siero.serialize ( symbols.map ( symbol => value[symbol] ) );
+
+    const packed = Packer.pack ([ flags, stringKeys, stringValues, symbolKeys, symbolValues ]);
 
     return packed;
 
   }
 
-  deserialize ( value: string ): Record<string, unknown> {
+  deserialize ( value: string ): Record<number | string | symbol, unknown> {
 
     const unpacked = Packer.unpack ( value );
 
@@ -53,14 +57,23 @@ class _PlainObject extends Type<Record<string, unknown>> {
     const flagFrozen = flags & FLAG_FROZEN;
     const flagSealed = flags & FLAG_SEALED;
 
-    const keys = castArray ( this.siero.deserialize ( unpacked[1] ) );
-    const values = castArray ( this.siero.deserialize ( unpacked[2] ) );
+    const stringKeys = castArray ( this.siero.deserialize ( unpacked[1] ) );
+    const stringValues = castArray ( this.siero.deserialize ( unpacked[2] ) );
 
-    const object: Record<string, unknown> = flagProtoless ? Object.create ( null ) : {};
+    const symbolKeys = castArray ( this.siero.deserialize ( unpacked[3] ) );
+    const symbolValues = castArray ( this.siero.deserialize ( unpacked[4] ) );
 
-    for ( let i = 0, l = keys.length; i < l; i++ ) {
+    const object: Record<number | string | symbol, unknown> = flagProtoless ? Object.create ( null ) : {};
 
-      object[`${keys[i]}`] = values[i];
+    for ( let i = 0, l = stringKeys.length; i < l; i++ ) {
+
+      object[stringKeys[i] as string] = stringValues[i];
+
+    }
+
+    for ( let i = 0, l = symbolKeys.length; i < l; i++ ) {
+
+      object[symbolKeys[i] as symbol] = symbolValues[i];
 
     }
 

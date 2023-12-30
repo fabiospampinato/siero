@@ -99,6 +99,9 @@ describe ( 'Siero', () => {
       testSerialization ( { foo: undefined } );
       testSerialization ( { length: 1 } );
 
+      testSerialization ( { foo: 123, [Symbol ()]: 123 } );
+      testSerialization ( { foo: 123, [Symbol ()]: 123, [Symbol ()]: 321 } );
+
       testSerialization ( Object.create ( null ) );
       testSerialization ( Object.create ( null, { foo: { value: 123 } } ) );
 
