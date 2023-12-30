@@ -2,7 +2,7 @@
 
 A serialization library that can handle functions, promises and symbols too.
 
-In general arbitrary functions, promises and symbols can't be transferred between workers, but this library enables you to do the next best thing: by having the two processes transparently communicate with each other you can write code as if functions/promises/symbols got actually transferred between them.
+In general arbitrary functions/promises/symbols can't be transferred between workers/processes/VMs, but this library enables you to do the next best thing: by having the two execution contexts communicate with each other you can write code as if functions/promises/symbols got actually transferred between them.
 
 ## Install
 
@@ -68,7 +68,7 @@ import {serialize, deserialize} from 'siero';
 
 // Let's serialize a supported value
 
-const value = {}; // Any serializable value
+const value = { whatever: 123 }; // Any serializable value
 const serialized = serialize ( value );
 
 // Let's deserialize it

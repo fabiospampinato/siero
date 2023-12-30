@@ -1,7 +1,7 @@
 {
   "name": "siero",
   "repository": "github:fabiospampinato/siero",
-  "description": "A serialization library that can also kinda pass promises, functions and symbols to workers.",
+  "description": "A serialization library that can handle functions, promises and symbols too.",
   "version": "0.0.1",
   "type": "module",
   "main": "dist/index.js",
