@@ -6,6 +6,7 @@ import Boolean from './types/boolean';
 import Null from './types/null';
 import Number from './types/number';
 import String from './types/string';
+import Symbol from './types/symbol';
 import Undefined from './types/undefined';
 
 import Array from './types/array';
@@ -47,6 +48,7 @@ const TYPES = [
   Null,
   Number,
   String,
+  Symbol,
   Undefined,
 
   Array,

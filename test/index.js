@@ -141,6 +141,30 @@ describe ( 'Siero', () => {
 
     });
 
+    it ( 'symbol (known)', () => {
+
+      const knowns = ['asyncIterator', 'hasInstance', 'isConcatSpreadable', 'iterator', 'match', 'matchAll', 'replace', 'search', 'species', 'split', 'toPrimitive', 'toStringTag', 'unscopables', 'dispose', 'asyncDispose'];
+
+      for ( const known of knowns ) {
+
+        testSerialization ( Symbol[known] );
+
+      }
+
+    });
+
+    it ( 'symbol (custom)', () => {
+
+      testSerialization ( Symbol () );
+      testSerialization ( Symbol () );
+
+      const symbol = Symbol ();
+
+      testSerialization ( symbol );
+      testSerialization ( symbol );
+
+    });
+
     it ( 'undefined', () => {
 
       testSerialization ( undefined );

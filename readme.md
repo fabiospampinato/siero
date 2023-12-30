@@ -19,8 +19,8 @@ npm install --save siero
 | [`Null`][2]      | [`RangeError`][8]     | [`Float32Array`][15]      | [`Date`][26]        |
 | [`Number`][3]    | [`ReferenceError`][9] | [`Float64Array`][16]      | [`RegExp`][27]      |
 | [`String`][4]    | [`SyntaxError`][10]   | [`Int8Array`][17]         | [`Map`][28]         |
-| [`Undefined`][5] | [`TypeError`][11]     | [`Int16Array`][18]        | [`Set`][29]         |
-|                  | [`URIError`][12]      | [`Int32Array`][19]        | [`PlainObject`][30] |
+| [`Symbol`][31]   | [`TypeError`][11]     | [`Int16Array`][18]        | [`Set`][29]         |
+| [`Undefined`][5] | [`URIError`][12]      | [`Int32Array`][19]        | [`PlainObject`][30] |
 |                  |                       | [`Uint8Array`][20]        |                     |
 |                  |                       | [`Uint16Array`][21]       |                     |
 |                  |                       | [`Uint32Array`][22]       |                     |
@@ -32,6 +32,7 @@ npm install --save siero
 [3]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number
 [4]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
 [5]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Undefined
+[31]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol
 
 [6]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error
 [7]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError
