@@ -1,0 +1,34 @@
+{
+  "name": "siero",
+  "repository": "github:fabiospampinato/siero",
+  "description": "A serialization library that can also kinda pass promises, functions and symbols to workers.",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "dist/index.js",
+  "exports": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "benchmark": "tsex benchmark",
+    "benchmark:watch": "tsex benchmark --watch",
+    "clean": "tsex clean",
+    "compile": "tsex compile",
+    "compile:watch": "tsex compile --watch",
+    "size": "tsex task --name size",
+    "test": "tsex test",
+    "test:watch": "tsex test --watch",
+    "prepublishOnly": "tsex prepare"
+  },
+  "keywords": [
+    "serialize",
+    "deserialize",
+    "function",
+    "promise",
+    "worker"
+  ],
+  "devDependencies": {
+    "benchloop": "^2.1.1",
+    "fava": "^0.3.1",
+    "tsex": "^3.0.1",
+    "typescript": "^5.3.3"
+  }
+}
