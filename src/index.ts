@@ -6,12 +6,9 @@ import Siero from './siero';
 /* MAIN */
 
 //TODO: Maybe preserve holes in arrays
-//TODO: Maybe preserve null-prototype objects
 //TODO: Maybe make types fully configurable, or at least extendable
-//TODO: Maybe have dedicated true/false nodes
 //TODO: Maybe preserve arrow/normal/async functions
 //TODO: Maybe preserve configurable/enumerable flags
-//TODO: Maybe preserve frozen/sealed/extensible
 //TODO: Maybe preserve symbol properties
 
 //TODO: Support null-prototype objects

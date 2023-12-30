@@ -102,6 +102,17 @@ describe ( 'Siero', () => {
       testSerialization ( Object.create ( null ) );
       testSerialization ( Object.create ( null, { foo: { value: 123 } } ) );
 
+      t.is ( Object.getPrototypeOf ( deserialize ( serialize ( Object.create ( null ) ) ) ), null );
+
+      t.is ( Object.isExtensible ( deserialize ( serialize ( {} ) ) ), true );
+      t.is ( Object.isExtensible ( deserialize ( serialize ( Object.preventExtensions ( {} ) ) ) ), false );
+
+      t.is ( Object.isFrozen ( deserialize ( serialize ( {} ) ) ), false );
+      t.is ( Object.isFrozen ( deserialize ( serialize ( Object.freeze ( {} ) ) ) ), true );
+
+      t.is ( Object.isSealed ( deserialize ( serialize ( {} ) ) ), false );
+      t.is ( Object.isSealed ( deserialize ( serialize ( Object.seal ( {} ) ) ) ), true );
+
     });
 
     it ( 'regexp', () => {
