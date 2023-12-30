@@ -12,8 +12,6 @@ const testSerialization = value => {
 
 /* MAIN */
 
-//TODO: Account for byteOffset and byteLength
-
 describe ( 'Siero', () => {
 
   describe ( 'supports various types', it => {
@@ -239,6 +237,11 @@ describe ( 'Siero', () => {
 
       testSerialization ( new Uint8Array () );
       testSerialization ( new Uint8Array ([ 1, 2, 3 ]) );
+
+      const buffer = new Uint8Array ([ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]).buffer;
+
+      testSerialization ( new Uint8Array ( buffer, 0, 3 ) );
+      testSerialization ( new Uint8Array ( buffer, 3, 6 ) );
 
     });
 
