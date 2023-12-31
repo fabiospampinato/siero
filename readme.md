@@ -79,7 +79,7 @@ import {serialize, deserialize} from 'siero';
 
 // Let's serialize a supported value
 
-const value = { whatever: 123 }; // Any serializable value
+const value = { whatever: 123 }; // Any supported value
 const serialized = serialize ( value );
 
 // Let's deserialize it

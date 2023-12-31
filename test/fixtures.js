@@ -15,7 +15,7 @@ const SERIALIZABLE = {
   booleanFalse: false,
   number: 123,
   string: 'string',
-  stringLong: 'a'.repeat ( 100_000 ),
+  stringLong: 'a'.repeat ( 1_000_000 ),
   null: null,
   undefined: undefined,
   date: new Date (),

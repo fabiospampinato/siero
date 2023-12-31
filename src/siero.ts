@@ -14,9 +14,9 @@ class Siero {
   protected type2id: Map<TypeInstance, string>;
   protected id2type: Map<string, TypeInstance>;
 
-  protected typeof2type: Map<string, TypeInstance>;
-  protected constructor2type: Map<Function, TypeInstance>;
   protected value2type: Map<unknown, TypeInstance>;
+  protected constructor2type: Map<Function, TypeInstance>;
+  protected typeof2type: Map<string, TypeInstance>;
 
   /* CONSTRUCTOR */
 

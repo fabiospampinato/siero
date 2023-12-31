@@ -102,6 +102,8 @@ describe ( 'Siero', () => {
       testSerialization ( { foo: 123, [Symbol ()]: 123 } );
       testSerialization ( { foo: 123, [Symbol ()]: 123, [Symbol ()]: 321 } );
 
+      testSerialization ( { value: 1, get foo () { return this.value; }, set foo ( value ) {} } );
+
       testSerialization ( Object.create ( null ) );
       testSerialization ( Object.create ( null, { foo: { value: 123 } } ) );
 

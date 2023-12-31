@@ -11,13 +11,6 @@ benchmark.config ({
   iterations: 10_000
 });
 
-// benchmark ({
-//   name: 'JSON.stringify',
-//   fn: () => {
-//     JSON.stringify ( SERIALIZABLE );
-//   }
-// });
-
 benchmark ({
   name: 'siero.serialize',
   fn: () => {
