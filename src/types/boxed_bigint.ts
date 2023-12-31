@@ -1,27 +1,18 @@
 
 /* IMPORT */
 
-import Type from './type';
+import AbstractBoxed from './abstract_boxed';
+import type {SieroInstance} from '../types';
 
 /* MAIN */
 
-class _BoxedBigInt extends Type<object> {
+class _BoxedBigInt extends AbstractBoxed {
 
-  /* VARIABLES */
+  /* CONSTRUCTOR */
 
-  readonly Constructor = BigInt;
+  constructor ( siero: SieroInstance ) {
 
-  /* API */
-
-  serialize ( value: object ): string {
-
-    return value.valueOf ().toString ();
-
-  }
-
-  deserialize ( value: string ): object {
-
-    return Object ( BigInt ( value ) );
+    super ( siero, BigInt );
 
   }
 

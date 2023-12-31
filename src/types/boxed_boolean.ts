@@ -1,27 +1,18 @@
 
 /* IMPORT */
 
-import Type from './type';
+import AbstractBoxed from './abstract_boxed';
+import type {SieroInstance} from '../types';
 
 /* MAIN */
 
-class _BoxedBoolean extends Type<object> {
+class _BoxedBoolean extends AbstractBoxed {
 
-  /* VARIABLES */
+  /* CONSTRUCTOR */
 
-  readonly Constructor = Boolean;
+  constructor ( siero: SieroInstance ) {
 
-  /* API */
-
-  serialize ( value: object ): string {
-
-    return value.valueOf () ? '1' : '0';
-
-  }
-
-  deserialize ( value: string ): object {
-
-    return Object ( value === '1' );
+    super ( siero, Boolean );
 
   }
 

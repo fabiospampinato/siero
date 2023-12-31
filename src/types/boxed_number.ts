@@ -1,27 +1,18 @@
 
 /* IMPORT */
 
-import Type from './type';
+import AbstractBoxed from './abstract_boxed';
+import type {SieroInstance} from '../types';
 
 /* MAIN */
 
-class _BoxedNumber extends Type<object> {
+class _BoxedNumber extends AbstractBoxed {
 
-  /* VARIABLES */
+  /* CONSTRUCTOR */
 
-  readonly Constructor = Number;
+  constructor ( siero: SieroInstance ) {
 
-  /* API */
-
-  serialize ( value: object ): string {
-
-    return this.siero.serialize ( value.valueOf () );
-
-  }
-
-  deserialize ( value: string ): object {
-
-    return Object ( this.siero.deserialize ( value ) );
+    super ( siero, Number );
 
   }
 
