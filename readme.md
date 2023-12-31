@@ -13,6 +13,7 @@ In general arbitrary functions/promises/symbols can't be transferred between wor
 - Getter/setter properties are not preserved, they will get resolved instead.
 - For error objects only the `name`, `message`, `stack` and `cause` properties are preserved.
 - Holes in arrays are not preserved, they are instead filled with `undefined`.
+- Cyclic references are not currently supported, and duplicated references are encoded inefficiently, for now.
 
 ## Install
 

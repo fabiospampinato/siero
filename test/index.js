@@ -338,6 +338,16 @@ describe ( 'Siero', () => {
 
     });
 
+    it.skip ( 'cyclic references', () => {
+
+      const cyclic = {};
+
+      cyclic.cyclic = cyclic;
+
+      testSerialization ( cyclic );
+
+    });
+
   });
 
   describe ( 'throws on unsupported types', it => {
