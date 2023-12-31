@@ -4,6 +4,16 @@ A serialization library that can handle functions, promises and symbols too.
 
 In general arbitrary functions/promises/symbols can't be transferred between workers/processes/VMs, but this library enables you to do the next best thing: by having the two execution contexts communicate with each other you can write code as if functions/promises/symbols got actually transferred between them.
 
+## Limitations
+
+- Symbol properties are only preserved if attached to plain objects.
+- Arbitrary custom properties are also only preserved if attached to plain objects.
+- Prevent-extension/sealed/frozen flags are also only preserved for plain objects.
+- Custom configurable/enumerable/writable flags for properties are not preserved at all.
+- Getter/setter properties are not preserved, they will get resolved instead.
+- For error objects only the `name`, `message`, `stack` and `cause` properties are preserved.
+- Holes in arrays are not preserved, they are instead filled with `undefined`.
+
 ## Install
 
 ```sh
