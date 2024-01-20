@@ -25,10 +25,14 @@
     "promise",
     "worker"
   ],
+  "dependencies": {
+    "known-symbols": "^1.0.0",
+    "zeptoid": "^1.0.1"
+  },
   "devDependencies": {
     "benchloop": "^2.1.1",
-    "fava": "^0.3.1",
-    "tsex": "^3.0.1",
+    "fava": "^0.3.2",
+    "tsex": "^3.0.2",
     "typescript": "^5.3.3"
   }
 }

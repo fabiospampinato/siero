@@ -46,8 +46,6 @@ import PlainObject from './types/plain_object';
 
 /* MAIN */
 
-const REALM = Math.random ().toString ( 36 ).slice ( 2 );
-
 const TYPES = [
   BigInt,
   Boolean,
@@ -95,4 +93,4 @@ const TYPES = [
 
 /* EXPORT */
 
-export {REALM, TYPES};
+export {TYPES};

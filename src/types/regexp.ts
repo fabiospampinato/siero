@@ -1,7 +1,6 @@
 
 /* IMPORT */
 
-import Packer from '../packer';
 import Type from './type';
 
 /* MAIN */
@@ -17,7 +16,7 @@ class _RegExp extends Type<RegExp> {
   serialize ( value: RegExp ): string {
 
     const {source, flags} = value;
-    const packed = Packer.pack ([ source, flags ]);
+    const packed = this.siero.pack ([ source, flags ]);
 
     return packed;
 
@@ -25,7 +24,7 @@ class _RegExp extends Type<RegExp> {
 
   deserialize ( value: string ): RegExp {
 
-    const unpacked = Packer.unpack ( value );
+    const unpacked = this.siero.unpack ( value );
     const [source, flags] = unpacked;
     const re = new RegExp ( source, flags );
 

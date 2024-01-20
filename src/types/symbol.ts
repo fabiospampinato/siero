@@ -1,21 +1,8 @@
 
 /* IMPORT */
 
-import {REALM} from '../constants';
+import Known from 'known-symbols';
 import Type from './type';
-
-/* HELPERS */
-
-const descriptors = Object.getOwnPropertyDescriptors ( Symbol );
-const known2symbol: Partial<Record<string, symbol>> = {};
-const symbol2known: Partial<Record<symbol, string>> = {};
-
-for ( const prop in descriptors ) {
-  const value = descriptors[prop].value;
-  if ( typeof value !== 'symbol' ) continue;
-  known2symbol[prop] = value;
-  symbol2known[value] = prop;
-}
 
 /* CONTEXT */
 
@@ -37,21 +24,22 @@ class _Symbol extends Type<symbol> {
 
   serialize ( value: symbol ): string {
 
-    const known = symbol2known[value];
+    const known = Known.getName ( value );
 
     if ( known ) return known;
 
+    const realm = this.siero.realm;
     const id = ( symbol2id[value] ||= `${counter++}` );
-    const id2symbol = ( realm2id2symbol[REALM] ||= {} );
+    const id2symbol = ( realm2id2symbol[realm] ||= {} );
     const symbol = ( id2symbol[id] ||= value );
 
-    return `${REALM}-${id}`;
+    return `${realm}-${id}`;
 
   }
 
   deserialize ( value: string ): symbol {
 
-    const known = known2symbol[value];
+    const known = Known.getSymbol ( value );
 
     if ( known ) return known;
 

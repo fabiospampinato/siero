@@ -1,7 +1,6 @@
 
 /* IMPORT */
 
-import Packer from '../packer';
 import Type from './type';
 import type {Constructor, SieroInstance} from '../types';
 
@@ -31,7 +30,7 @@ abstract class AbstractError<T extends Error> extends Type<T> {
     const message = value.message;
     const stack = value.stack || '';
     const cause = value.cause ? this.siero.serialize ( value.cause ) : '';
-    const packed = Packer.pack ([ name, message, stack, cause ]);
+    const packed = this.siero.pack ([ name, message, stack, cause ]);
 
     return packed;
 
@@ -39,7 +38,7 @@ abstract class AbstractError<T extends Error> extends Type<T> {
 
   deserialize ( value: string ): T {
 
-    const unpacked = Packer.unpack ( value );
+    const unpacked = this.siero.unpack ( value );
     const [name, message, stack, cause] = unpacked;
     const error = new this.Constructor ();
 

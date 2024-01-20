@@ -1,11 +1,15 @@
 
+/* IMPORT */
+
+import Addon from './addon';
+
 /* MAIN */
 
-class Packer {
+class Packer extends Addon {
 
   /* API */
 
-  pack ( unpacked: string[] ): string {
+  pack = ( unpacked: string[] ): string => {
 
     let lengths = '';
     let values = '';
@@ -22,9 +26,9 @@ class Packer {
 
     return `${lengths}:${values}`;
 
-  }
+  };
 
-  unpack ( packed: string ): string[] {
+  unpack = ( packed: string ): string[] => {
 
     const separatorIndex = packed.indexOf ( ':' );
     const lengthsRaw = packed.slice ( 0, separatorIndex );
@@ -49,10 +53,10 @@ class Packer {
 
     return values;
 
-  }
+  };
 
 }
 
 /* EXPORT */
 
-export default new Packer ();
+export default Packer;

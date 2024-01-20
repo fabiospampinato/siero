@@ -1,7 +1,6 @@
 
 /* IMPORT */
 
-import Packer from '../packer';
 import {castArray} from '../utils';
 import Type from './type';
 
@@ -41,7 +40,7 @@ class _PlainObject extends Type<Record<string, unknown>> {
     const symbolKeys = this.siero.serialize ( symbols );
     const symbolValues = this.siero.serialize ( symbols.map ( symbol => value[symbol] ) );
 
-    const packed = Packer.pack ([ flags, stringKeys, stringValues, symbolKeys, symbolValues ]);
+    const packed = this.siero.pack ([ flags, stringKeys, stringValues, symbolKeys, symbolValues ]);
 
     return packed;
 
@@ -49,7 +48,7 @@ class _PlainObject extends Type<Record<string, unknown>> {
 
   deserialize ( value: string ): Record<number | string | symbol, unknown> {
 
-    const unpacked = Packer.unpack ( value );
+    const unpacked = this.siero.unpack ( value );
 
     const flags = parseInt ( unpacked[0] );
     const flagProtoless = flags & FLAG_PROTOLESS;
