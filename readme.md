@@ -10,9 +10,9 @@ In general arbitrary functions/promises/symbols can't be transferred between wor
 - Arbitrary custom properties are also only preserved if attached to plain objects.
 - Prevent-extension/sealed/frozen flags are also only preserved for plain objects.
 - Custom configurable/enumerable/writable flags for properties are not preserved at all.
-- Getter/setter properties are not preserved, they will get resolved instead.
+- Getter/setter properties are not preserved as functions, they will instead be resolved.
 - For error objects only the `name`, `message`, `stack` and `cause` properties are preserved.
-- Holes in arrays are not preserved, they are instead filled with `undefined`.
+- Holes in arrays are not preserved, they are instead replaced by `undefined`.
 - Cyclic references are not currently supported, and duplicated references are encoded inefficiently, for now.
 
 ## Install
