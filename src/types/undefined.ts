@@ -2,6 +2,7 @@
 /* IMPORT */
 
 import Type from './type';
+import type {DeserializeOptions, SerializeOptions} from '../types';
 
 /* MAIN */
 
@@ -13,13 +14,13 @@ class _Undefined extends Type<undefined> {
 
   /* API */
 
-  serialize ( value: undefined ): string {
+  serialize ( value: undefined, options?: SerializeOptions ): string {
 
     return '';
 
   }
 
-  deserialize ( value: string ): undefined {
+  deserialize ( value: string, options?: DeserializeOptions ): undefined {
 
     return undefined;
 

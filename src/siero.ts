@@ -5,6 +5,7 @@ import zeptoid from 'zeptoid';
 import Contexts from './addons/contexts';
 import Packer from './addons/packer';
 import Serializer from './addons/serializer';
+import type {SerializeOptions, DeserializeOptions} from './types';
 
 /* MAIN */
 
@@ -44,15 +45,15 @@ class Siero {
 
   };
 
-  serialize = ( value: unknown ): string => {
+  serialize = ( value: unknown, options?: SerializeOptions ): string => {
 
-    return this.serializer.serialize ( value );
+    return this.serializer.serialize ( value, options );
 
   };
 
-  deserialize = ( value: string ): unknown => {
+  deserialize = ( value: string, options?: DeserializeOptions ): unknown => {
 
-    return this.serializer.deserialize ( value );
+    return this.serializer.deserialize ( value, options );
 
   };
 

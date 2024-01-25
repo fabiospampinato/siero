@@ -2,7 +2,7 @@
 /* IMPORT */
 
 import Type from './type';
-import type {Constructor, SieroInstance} from '../types';
+import type {Constructor, DeserializeOptions, SerializeOptions, SieroInstance} from '../types';
 
 /* MAIN */
 
@@ -24,19 +24,19 @@ abstract class AbstractError<T extends Error> extends Type<T> {
 
   /* API */
 
-  serialize ( value: T ): string {
+  serialize ( value: T, options?: SerializeOptions ): string {
 
     const name = value.name;
     const message = value.message;
     const stack = value.stack || '';
-    const cause = value.cause ? this.siero.serialize ( value.cause ) : '';
+    const cause = value.cause ? this.siero.serialize ( value.cause, options ) : '';
     const packed = this.siero.pack ([ name, message, stack, cause ]);
 
     return packed;
 
   }
 
-  deserialize ( value: string ): T {
+  deserialize ( value: string, options?: DeserializeOptions ): T {
 
     const unpacked = this.siero.unpack ( value );
     const [name, message, stack, cause] = unpacked;
@@ -45,7 +45,7 @@ abstract class AbstractError<T extends Error> extends Type<T> {
     error.name = name;
     error.message = message;
     error.stack = stack;
-    error.cause = cause ? this.siero.deserialize ( cause ) : undefined;
+    error.cause = cause ? this.siero.deserialize ( cause, options ) : undefined;
 
     return error;
 

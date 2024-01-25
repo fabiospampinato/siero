@@ -3,10 +3,12 @@
 
 import Known from 'known-symbols';
 import Type from './type';
+import type {DeserializeOptions, SerializeOptions} from '../types';
 
 /* MAIN */
 
 //TODO: Use WeakMaps, once support for symbols as their keys is widespread, to not leak any memory
+//TODO: Preserve external symbols as such, so serialize ABC-123 to ABC-123 if we are serializing for ABC
 
 class _Symbol extends Type<symbol> {
 
@@ -16,7 +18,7 @@ class _Symbol extends Type<symbol> {
 
   /* API */
 
-  serialize ( value: symbol ): string {
+  serialize ( value: symbol, options?: SerializeOptions ): string {
 
     const known = Known.getName ( value );
 
@@ -32,7 +34,7 @@ class _Symbol extends Type<symbol> {
 
   }
 
-  deserialize ( value: string ): symbol {
+  deserialize ( value: string, options?: DeserializeOptions ): symbol {
 
     const known = Known.getSymbol ( value );
 

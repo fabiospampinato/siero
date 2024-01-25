@@ -2,6 +2,7 @@
 /* IMPORT */
 
 import Type from './type';
+import type {DeserializeOptions, SerializeOptions} from '../types';
 
 /* MAIN */
 
@@ -13,13 +14,13 @@ class _String extends Type<string> {
 
   /* API */
 
-  serialize ( value: string ): string {
+  serialize ( value: string, options?: SerializeOptions ): string {
 
     return value;
 
   }
 
-  deserialize ( value: string ): string {
+  deserialize ( value: string, options?: DeserializeOptions ): string {
 
     return value;
 

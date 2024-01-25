@@ -5,6 +5,9 @@ type Constructor<T, U extends unknown[] = []> = { new ( ...args: U ): T };
 
 type Disposer = () => void;
 
+type DeserializeOptions = { realm?: string };
+type SerializeOptions = { realm?: string };
+
 type Siero = import ( './siero' ).default;
 type SieroInstance = InstanceType<typeof import ( './siero' ).default>;
 
@@ -17,4 +20,4 @@ type TypedArray = BigIntTypedArray | NumberTypedArray;
 
 /* EXPORT */
 
-export type {Constructor, Disposer, Siero, SieroInstance, Type, TypeInstance, BigIntTypedArray, NumberTypedArray, TypedArray};
+export type {Constructor, Disposer, DeserializeOptions, SerializeOptions, Siero, SieroInstance, Type, TypeInstance, BigIntTypedArray, NumberTypedArray, TypedArray};

@@ -2,6 +2,7 @@
 /* IMPORT */
 
 import Type from './type';
+import type {DeserializeOptions, SerializeOptions} from '../types';
 
 /* MAIN */
 
@@ -13,7 +14,7 @@ class _Number extends Type<number> {
 
   /* API */
 
-  serialize ( value: number ): string {
+  serialize ( value: number, options?: SerializeOptions ): string {
 
     if ( value === Infinity ) return 'I';
 
@@ -27,7 +28,7 @@ class _Number extends Type<number> {
 
   }
 
-  deserialize ( value: string ): number {
+  deserialize ( value: string, options?: DeserializeOptions ): number {
 
     if ( value === 'I' ) return Infinity;
 

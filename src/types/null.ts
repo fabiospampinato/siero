@@ -2,6 +2,7 @@
 /* IMPORT */
 
 import Type from './type';
+import type {DeserializeOptions, SerializeOptions} from '../types';
 
 /* MAIN */
 
@@ -13,13 +14,13 @@ class _Null extends Type<null> {
 
   /* API */
 
-  serialize ( value: null ): string {
+  serialize ( value: null, options?: SerializeOptions ): string {
 
     return '';
 
   }
 
-  deserialize ( value: string ): null {
+  deserialize ( value: string, options?: DeserializeOptions ): null {
 
     return null;
 

@@ -2,6 +2,7 @@
 /* IMPORT */
 
 import Type from './type';
+import type {DeserializeOptions, SerializeOptions} from '../types';
 
 /* MAIN */
 
@@ -13,7 +14,7 @@ class _RegExp extends Type<RegExp> {
 
   /* API */
 
-  serialize ( value: RegExp ): string {
+  serialize ( value: RegExp, options?: SerializeOptions ): string {
 
     const {source, flags} = value;
     const packed = this.siero.pack ([ source, flags ]);
@@ -22,7 +23,7 @@ class _RegExp extends Type<RegExp> {
 
   }
 
-  deserialize ( value: string ): RegExp {
+  deserialize ( value: string, options?: DeserializeOptions ): RegExp {
 
     const unpacked = this.siero.unpack ( value );
     const [source, flags] = unpacked;

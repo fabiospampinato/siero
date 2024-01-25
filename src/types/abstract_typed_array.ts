@@ -2,7 +2,7 @@
 /* IMPORT */
 
 import Type from './type';
-import type {Constructor, SieroInstance, TypedArray} from '../types';
+import type {Constructor, DeserializeOptions, SerializeOptions, SieroInstance, TypedArray} from '../types';
 
 /* TYPES */
 
@@ -32,13 +32,13 @@ abstract class AbstractTypedArray<T extends TypedArray, U extends bigint | numbe
 
   /* API */
 
-  serialize ( value: T ): string {
+  serialize ( value: T, options?: SerializeOptions ): string {
 
     return value.toString ();
 
   }
 
-  deserialize ( value: string ): T {
+  deserialize ( value: string, options?: DeserializeOptions ): T {
 
     const values = value ? value.split ( ',' ).map ( this.Parser ) : [];
     const typedArray = new this.Constructor ( values );

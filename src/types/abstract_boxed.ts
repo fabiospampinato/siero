@@ -2,7 +2,7 @@
 /* IMPORT */
 
 import Type from './type';
-import type {SieroInstance} from '../types';
+import type {DeserializeOptions, SerializeOptions, SieroInstance} from '../types';
 
 /* MAIN */
 
@@ -24,15 +24,15 @@ class AbstractBoxed extends Type<object> {
 
   /* API */
 
-  serialize ( value: object ): string {
+  serialize ( value: object, options?: SerializeOptions ): string {
 
-    return this.siero.serialize ( value.valueOf () );
+    return this.siero.serialize ( value.valueOf (), options );
 
   }
 
-  deserialize ( value: string ): object {
+  deserialize ( value: string, options?: DeserializeOptions ): object {
 
-    return Object ( this.siero.deserialize ( value ) );
+    return Object ( this.siero.deserialize ( value, options ) );
 
   }
 

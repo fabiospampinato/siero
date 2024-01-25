@@ -3,7 +3,7 @@
 
 import {TYPES} from '../constants';
 import Addon from './addon';
-import type {TypeInstance, SieroInstance} from '../types';
+import type {DeserializeOptions, SerializeOptions, TypeInstance, SieroInstance} from '../types';
 
 /* MAIN */
 
@@ -63,20 +63,20 @@ class Serializer extends Addon {
 
   };
 
-  serialize = ( value: unknown ): string => {
+  serialize = ( value: unknown, options?: SerializeOptions ): string => {
 
     const type = this.infer ( value );
 
     if ( !type ) throw new Error ( 'Unserializable value' );
 
     const id = this.type2id.get ( type );
-    const data = type.serialize ( value );
+    const data = type.serialize ( value, options );
 
     return `${id}${data}`;
 
   };
 
-  deserialize = ( value: string ): unknown => {
+  deserialize = ( value: string, options?: DeserializeOptions ): unknown => {
 
     const id = value[0];
     const data = value.slice ( 1 );
@@ -84,7 +84,7 @@ class Serializer extends Addon {
 
     if ( !type ) throw new Error ( 'Undeserializable value' );
 
-    return type.deserialize ( data );
+    return type.deserialize ( data, options );
 
   };
 
