@@ -27,7 +27,6 @@
   ],
   "dependencies": {
     "known-symbols": "^1.0.0",
-    "zeptoid": "^1.0.1"
   },
   "devDependencies": {
     "benchloop": "^2.1.1",

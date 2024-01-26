@@ -1,10 +1,10 @@
 
 /* IMPORT */
 
-import zeptoid from 'zeptoid';
 import Contexts from './addons/contexts';
 import Packer from './addons/packer';
 import Serializer from './addons/serializer';
+import {getRandomId} from './utils';
 import type {SerializeOptions, DeserializeOptions} from './types';
 
 /* MAIN */
@@ -24,7 +24,7 @@ class Siero {
 
   constructor () {
 
-    this.realm = zeptoid ();
+    this.realm = getRandomId ();
     this.contexts = new Contexts ( this );
     this.packer = new Packer ( this );
     this.serializer = new Serializer ( this );
