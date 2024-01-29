@@ -7,8 +7,7 @@ import type {DeserializeOptions, SerializeOptions} from '../types';
 
 /* MAIN */
 
-//TODO: Use WeakMaps, once support for symbols as their keys is widespread, to not leak any memory
-//TODO: Preserve external symbols as such, so serialize ABC-123 to ABC-123 if we are serializing for ABC
+//TODO: Use WeakMaps + FinalizationRegistry, once support for symbols as their keys is widespread, to not leak any memory
 
 class _Symbol extends Type<symbol> {
 
@@ -24,13 +23,10 @@ class _Symbol extends Type<symbol> {
 
     if ( known ) return known;
 
-    const realm = this.siero.realm;
-    const symbol2id = ( this.siero.contexts.realm2symbol2id[realm] ||= {} );
-    const id2symbol = ( this.siero.contexts.realm2id2symbol[realm] ||= {} );
-    const id = ( symbol2id[value] ||= `${this.siero.contexts.symbolCounter++}` );
-    const symbol = ( id2symbol[id] ||= value );
+    const id = ( this.siero.contexts.symbol2id[value] ||= `${this.siero.realm}-${this.siero.contexts.symbolCounter++}` );
+    const symbol = ( this.siero.contexts.id2symbol[id] ||= value );
 
-    return `${realm}-${id}`;
+    return id;
 
   }
 
@@ -40,9 +36,8 @@ class _Symbol extends Type<symbol> {
 
     if ( known ) return known;
 
-    const [realm, id] = value.split ( '-' );
-    const id2symbol = ( this.siero.contexts.realm2id2symbol[realm] ||= {} );
-    const symbol = ( id2symbol[id] ||= Symbol () );
+    const symbol = ( this.siero.contexts.id2symbol[value] ||= Symbol () );
+    const id = ( this.siero.contexts.symbol2id[symbol] ||= value );
 
     return symbol;
 
