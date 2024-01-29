@@ -58,6 +58,54 @@ describe ( 'Siero', () => {
 
     });
 
+    it ( 'function (sync, positive)', async () => {
+
+      const fn = ( a, b ) => a + b;
+
+      const serialized = serialize ( fn );
+      const deserialized = deserialize ( serialized );
+
+      //TODO: Make sure a promise is always returned
+
+      t.is ( await deserialized ( 1, 2 ), 3 );
+
+    });
+
+    it ( 'function (async, positive)', async () => {
+
+      const fn = async ( a, b ) => a + b;
+
+      const serialized = serialize ( fn );
+      const deserialized = deserialize ( serialized );
+
+      t.is ( await deserialized ( 1, 2 ), 3 );
+
+    });
+
+    it ( 'function (sync, negative)', async () => {
+
+      const fn = ( a, b ) => { throw a + b };
+
+      const serialized = serialize ( fn );
+      const deserialized = deserialize ( serialized );
+
+      //TODO: Make sure a promise is always returned
+
+      await new Promise ( () => deserialized ( 1, 2 ) ).catch ( err => t.is ( err, 3 ) );
+
+    });
+
+    it ( 'function (async, negative)', async () => {
+
+      const fn = async ( a, b ) => { throw a + b };
+
+      const serialized = serialize ( fn );
+      const deserialized = deserialize ( serialized );
+
+      await deserialized ( 1, 2 ).catch ( err => t.is ( err, 3 ) );
+
+    });
+
     it ( 'map', () => {
 
       testSerialization ( new Map ( [[ 'foo', /re/], [ 'bar', [123] ]] ) );

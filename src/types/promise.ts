@@ -29,10 +29,10 @@ class _Promise extends Type<Promise<unknown>> {
 
   settle ( id: string, positive: boolean, value: unknown ): void {
 
-    const realms = this.siero.contexts.id2realms[id];
+    const realms = this.siero.contexts.id2promiseRealms[id];
 
     if ( realms ) {
-      delete this.siero.contexts.id2realms[id];
+      delete this.siero.contexts.id2promiseRealms[id];
       for ( const realm of realms ) {
         if ( realm === this.siero.realm ) continue;
         if ( !this.siero.realms.has ( realm ) ) continue;
@@ -61,7 +61,7 @@ class _Promise extends Type<Promise<unknown>> {
     const promise = ( this.siero.contexts.id2promise[id] ||= promiseWithResolvers () );
 
     if ( options?.realm ) {
-      const realms = ( this.siero.contexts.id2realms[id] ||= new Set () );
+      const realms = ( this.siero.contexts.id2promiseRealms[id] ||= new Set () );
       realms.add ( options.realm );
     }
 

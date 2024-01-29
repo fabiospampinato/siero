@@ -14,6 +14,8 @@ In general arbitrary functions/promises/symbols can't be transferred between wor
 - For error objects only the `name`, `message`, `stack` and `cause` properties are preserved.
 - Holes in arrays are not preserved, they are instead replaced by `undefined`.
 - Cyclic references are not currently supported, and duplicated references are encoded inefficiently, for now.
+- The specific type of function constructor (regular, arrow, async etc.) is not preserved.
+- Deserialized functions will always return a Promise, even if the original function didn't.
 
 ## Install
 
