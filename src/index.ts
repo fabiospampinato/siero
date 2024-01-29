@@ -16,9 +16,12 @@ import Siero from './siero';
 //TODO: Support Promise
 
 //TODO: Support cyclic references
+//TODO: memoizeOne root serialize() calls, for when the same value is passed to multiple workers, benchmark this
 
-const {serialize, deserialize} = new Siero ();
+const siero = new Siero ();
+const {serialize, deserialize} = siero;
+const __internals = siero;
 
 /* EXPORT */
 
-export {serialize, deserialize};
+export {__internals, serialize, deserialize};
