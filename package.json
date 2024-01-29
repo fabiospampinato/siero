@@ -26,7 +26,7 @@
     "worker"
   ],
   "dependencies": {
-    "known-symbols": "^1.0.0",
+    "known-symbols": "^1.0.0"
   },
   "devDependencies": {
     "benchloop": "^2.1.1",
