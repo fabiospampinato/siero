@@ -2,7 +2,7 @@
 /* IMPORT */
 
 import {describe, t} from 'fava';
-import {serialize, deserialize} from '../dist/index.js';
+import {serialize, deserialize} from '../bundle/index.js';
 
 /* HELPERS */
 

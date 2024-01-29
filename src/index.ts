@@ -18,10 +18,11 @@ import Siero from './siero';
 //TODO: Support cyclic references
 //TODO: memoizeOne root serialize() calls, for when the same value is passed to multiple workers, benchmark this
 
+const __module = () => ({ default: Siero });
 const siero = new Siero ();
 const {serialize, deserialize} = siero;
 const __internals = siero;
 
 /* EXPORT */
 
-export {__internals, serialize, deserialize};
+export {__module, __internals, serialize, deserialize};

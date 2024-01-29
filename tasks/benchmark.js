@@ -2,7 +2,7 @@
 /* IMPORT */
 
 import benchmark from 'benchloop';
-import {serialize, deserialize} from '../dist/index.js';
+import {serialize, deserialize} from '../bundle/index.js';
 import {SERIALIZABLE, DESERIALIZABLE} from '../test/fixtures.js';
 
 /* MAIN */

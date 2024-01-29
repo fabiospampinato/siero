@@ -1,7 +1,7 @@
 
 /* IMPORT */
 
-import {serialize} from '../dist/index.js';
+import {serialize} from '../bundle/index.js';
 
 /* HELPERS */
 

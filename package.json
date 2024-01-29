@@ -4,19 +4,20 @@
   "description": "A serialization library that can handle functions, promises and symbols too.",
   "version": "0.0.1",
   "type": "module",
-  "main": "dist/index.js",
-  "exports": "./dist/index.js",
+  "main": "bundle/index.js",
+  "exports": "./bundle/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "benchmark": "tsex benchmark",
     "benchmark:watch": "tsex benchmark --watch",
+    "bundle": "esbuild --bundle --minify --format=iife --target=esnext ./src/siero.ts --global-name=siero | sed -e 's/\"use strict\";var siero=(/export default /' | sed -e 's/)();$/;/' > bundle/siero.js",
     "clean": "tsex clean",
     "compile": "tsex compile",
     "compile:watch": "tsex compile --watch",
     "size": "tsex task --name size",
     "test": "tsex test",
     "test:watch": "tsex test --watch",
-    "prepublishOnly": "tsex prepare"
+    "prepublishOnly": "npm run bundle && tsex prepare"
   },
   "keywords": [
     "serialize",
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "benchloop": "^2.1.1",
+    "esbuild": "^0.20.0",
     "fava": "^0.3.2",
     "tsex": "^3.0.2",
     "typescript": "^5.3.3"
