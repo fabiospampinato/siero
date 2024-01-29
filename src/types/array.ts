@@ -1,7 +1,7 @@
 
 /* IMPORT */
 
-import {map} from '../utils';
+import {arrayMap} from '../utils';
 import Type from './type';
 import type {DeserializeOptions, SerializeOptions} from '../types';
 

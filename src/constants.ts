@@ -19,6 +19,7 @@ import Array from './types/array';
 import ArrayBuffer from './types/array_buffer';
 import Date from './types/date';
 import Map from './types/map';
+import Promise from './types/promise';
 import RegExp from './types/regexp';
 import Set from './types/set';
 
@@ -65,6 +66,7 @@ const TYPES = [
   ArrayBuffer,
   Date,
   Map,
+  Promise,
   RegExp,
   Set,
 

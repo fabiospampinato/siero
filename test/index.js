@@ -120,6 +120,36 @@ describe ( 'Siero', () => {
 
     });
 
+    it ( 'promise (positive)', async () => {
+
+      const promise = new Promise ( resolve => {
+        setTimeout ( () => {
+          resolve ( 123 );
+        }, 500 );
+      });
+
+      const serialized = serialize ( promise );
+      const deserialized = deserialize ( serialized );
+
+      await promise.then ( res1 => deserialized.then ( res2 => t.is ( res1, res2 ) ) );
+
+    });
+
+    it ( 'promise (negative)', async () => {
+
+      const promise = new Promise ( ( resolve, reject ) => {
+        setTimeout ( () => {
+          reject ( 123 );
+        }, 500 );
+      });
+
+      const serialized = serialize ( promise );
+      const deserialized = deserialize ( serialized );
+
+      await promise.catch ( err1 => deserialized.catch ( err2 => t.is ( err1, err2 ) ) );
+
+    });
+
     it ( 'regexp', () => {
 
       testSerialization ( /a/ );
