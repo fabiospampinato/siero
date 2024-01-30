@@ -10,7 +10,8 @@ type Parser<T> = ( value: string ) => T;
 
 /* MAIN */
 
-//TODO: Maybe serialize the buffer to Base64, for smaller outputs, but worse performance
+//TODO: Maybe serialize the buffer to Base64, for smaller outputs (https://github.com/tc39/proposal-arraybuffer-base64)
+//TODO: Maybe build this on top of the ArrayBuffer type
 
 abstract class AbstractTypedArray<T extends TypedArray, U extends bigint | number> extends Type<T> {
 

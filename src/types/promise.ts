@@ -7,7 +7,7 @@ import type {DeserializeOptions, SerializeOptions, SieroInstance} from '../types
 
 /* MAIN */
 
-//TODO: Use WeakMaps + FinalizationRegistry, to handle the case where the promise is just garbage-collected without settling
+//TODO: Use WeakMaps + FinalizationRegistry, to handle the case where the promise is just garbage-collected without ever settling
 
 class _Promise extends Type<Promise<unknown>> {
 

@@ -4,6 +4,8 @@ A serialization library that can handle functions, promises and symbols too.
 
 In general arbitrary functions/promises/symbols can't be transferred between workers/processes/VMs, but this library enables you to do the next best thing: by having the two execution contexts communicate with each other you can write code as if functions/promises/symbols got actually transferred between them.
 
+Check out [`siero-worker`](https://github.com/fabiospampinato/siero-worker) for an opinionated way to spawn a worker that you can talk to via Siero.
+
 ## Limitations
 
 - Symbol properties are only preserved if attached to plain objects.
@@ -30,12 +32,12 @@ npm install --save siero
 | [`BigInt`][0]    | [`BigInt`][0]    | [`Error`][6]          | [`BigInt64Array`][13]     | [`Array`][24]       |
 | [`Boolean`][1]   | [`Boolean`][1]   | [`EvalError`][7]      | [`BigUint64Array`][14]    | [`ArrayBuffer`][25] |
 | [`Null`][2]      | [`Number`][3]    | [`RangeError`][8]     | [`Float32Array`][15]      | [`Date`][26]        |
-| [`Number`][3]    | [`String`][4]    | [`ReferenceError`][9] | [`Float64Array`][16]      | [`RegExp`][27]      |
-| [`String`][4]    | [`Symbol`][31]   | [`SyntaxError`][10]   | [`Int8Array`][17]         | [`Map`][28]         |
-| [`Symbol`][31]   |                  | [`TypeError`][11]     | [`Int16Array`][18]        | [`Set`][29]         |
-| [`Undefined`][5] |                  | [`URIError`][12]      | [`Int32Array`][19]        | [`PlainObject`][30] |
-|                  |                  |                       | [`Uint8Array`][20]        |                     |
-|                  |                  |                       | [`Uint16Array`][21]       |                     |
+| [`Number`][3]    | [`String`][4]    | [`ReferenceError`][9] | [`Float64Array`][16]      | [`Function`][32]    |
+| [`String`][4]    | [`Symbol`][31]   | [`SyntaxError`][10]   | [`Int8Array`][17]         | [`Promise`][33]     |
+| [`Symbol`][31]   |                  | [`TypeError`][11]     | [`Int16Array`][18]        | [`RegExp`][27]      |
+| [`Undefined`][5] |                  | [`URIError`][12]      | [`Int32Array`][19]        | [`Map`][28]         |
+|                  |                  |                       | [`Uint8Array`][20]        | [`Set`][29]         |
+|                  |                  |                       | [`Uint16Array`][21]       | [`PlainObject`][30] |
 |                  |                  |                       | [`Uint32Array`][22]       |                     |
 |                  |                  |                       | [`Uint8ClampedArray`][23] |                     |
 
@@ -74,6 +76,8 @@ npm install --save siero
 [28]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
 [29]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
 [30]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
+[32]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions
+[33]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
 ## Usage
 

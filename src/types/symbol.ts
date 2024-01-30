@@ -7,7 +7,7 @@ import type {DeserializeOptions, SerializeOptions} from '../types';
 
 /* MAIN */
 
-//TODO: Use WeakMaps + FinalizationRegistry, once support for symbols as their keys is widespread, to not leak any memory
+//TODO: Use WeakMaps + FinalizationRegistry, once support for symbols as their keys is widespread, to not hold into memory indefinitely
 
 class _Symbol extends Type<symbol> {
 

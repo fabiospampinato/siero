@@ -27,17 +27,17 @@ const getRandomId = (): string => {
 
 };
 
-const mapGetOrSet = <K, V> ( map: Map<K, V>, key: K, value: () => V ): V => { //TODO: write this better
+const mapGetOrSet = <K, V> ( map: Map<K, V>, key: K, getValue: () => V ): V => {
 
   const existing = map.get ( key );
 
   if ( existing || map.has ( key ) ) return existing!;
 
-  const additional = value ();
+  const value = getValue ();
 
-  map.set ( key, additional );
+  map.set ( key, value );
 
-  return additional;
+  return value;
 
 };
 

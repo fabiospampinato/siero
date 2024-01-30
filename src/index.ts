@@ -12,8 +12,6 @@ import Siero from './siero';
 
 //TODO: Support AggregateError
 //TODO: Support DataView
-//TODO: Support Function
-//TODO: Support Promise
 
 //TODO: Support cyclic references
 //TODO: memoizeOne root serialize() calls, for when the same value is passed to multiple workers, benchmark this

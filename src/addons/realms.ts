@@ -10,6 +10,8 @@ type Handler = ( command: string, args: string ) => void;
 
 /* MAIN */
 
+//TODO: Improve handleding of serialization errors when attempint to make a call
+
 class Realms extends Addon {
 
   /* VARIABLES */
