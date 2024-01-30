@@ -6,7 +6,7 @@
   "type": "module",
   "main": "bundle/index.js",
   "exports": "./bundle/index.js",
-  "types": "./dist/index.d.ts",
+  "types": "./bundle/index.d.ts",
   "scripts": {
     "benchmark": "tsex benchmark",
     "benchmark:watch": "tsex benchmark --watch",
