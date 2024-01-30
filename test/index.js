@@ -65,9 +65,7 @@ describe ( 'Siero', () => {
       const serialized = serialize ( fn );
       const deserialized = deserialize ( serialized );
 
-      //TODO: Make sure a promise is always returned
-
-      t.is ( await deserialized ( 1, 2 ), 3 );
+      await deserialized ( 1, 2 ).then ( res => t.is ( res, 3 ) );
 
     });
 
@@ -78,7 +76,7 @@ describe ( 'Siero', () => {
       const serialized = serialize ( fn );
       const deserialized = deserialize ( serialized );
 
-      t.is ( await deserialized ( 1, 2 ), 3 );
+      await deserialized ( 1, 2 ).then ( res => t.is ( res, 3 ) );
 
     });
 
@@ -89,9 +87,7 @@ describe ( 'Siero', () => {
       const serialized = serialize ( fn );
       const deserialized = deserialize ( serialized );
 
-      //TODO: Make sure a promise is always returned
-
-      await new Promise ( () => deserialized ( 1, 2 ) ).catch ( err => t.is ( err, 3 ) );
+      await deserialized ( 1, 2 ).catch ( err => t.is ( err, 3 ) );
 
     });
 

@@ -90,7 +90,8 @@ class _Function extends Type<Function> {
   serialize ( value: Function, options?: SerializeOptions ): string {
 
     const id = mapGetOrSet ( this.siero.contexts.function2id, value, () => `${this.siero.realm}-${this.siero.contexts.functionCounter++}` );
-    const fn = ( this.siero.contexts.id2function[id] ||= value );
+    const afn = ( this.siero.contexts.id2function[id] ||= (async ( ...args: unknown[] ) => value ( ...args )) );
+    const aid = mapGetOrSet ( this.siero.contexts.function2id, afn, () => id );
     const packed = this.siero.pack ([ value.name, `${value.length}`, id ]);
 
     return packed;
