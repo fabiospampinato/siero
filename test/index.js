@@ -432,6 +432,18 @@ describe ( 'Siero', () => {
 
     });
 
+    it ( 'generator', t => {
+
+      t.throws ( () => testSerialization ( function* () {} ) );
+
+    });
+
+    it ( 'async generator', t => {
+
+      t.throws ( () => testSerialization ( async function* () {} ) );
+
+    });
+
   });
 
 });

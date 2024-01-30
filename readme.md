@@ -18,6 +18,7 @@ Check out [`siero-worker`](https://github.com/fabiospampinato/siero-worker) for 
 - Cyclic references are not currently supported, and duplicated references are encoded inefficiently, for now.
 - The specific type of function constructor (regular, arrow, async etc.) is not preserved.
 - Deserialized functions will always return a Promise, even if the original function didn't.
+- Generators and async generators are not currently serializable.
 
 ## Install
 

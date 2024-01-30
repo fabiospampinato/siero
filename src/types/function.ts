@@ -7,7 +7,6 @@ import type {DeserializeOptions, SerializeOptions, SieroInstance} from '../types
 
 /* MAIN */
 
-//TODO: Throw on classes, and maybe generators also, though
 //TODO: Use WeakMaps + FinalizationRegistry, to handle the case where the function is just garbage-collected without settling
 
 class _Function extends Type<Function> {
