@@ -11,13 +11,13 @@ class Serializer extends Addon {
 
   /* VARIABLES */
 
-  protected types: TypeInstance[];
-  protected type2id: Map<TypeInstance, string>;
-  protected id2type: Map<string, TypeInstance>;
+  private types: TypeInstance[];
+  private type2id: Map<TypeInstance, string>;
+  private id2type: Map<string, TypeInstance>;
 
-  protected value2type: Map<unknown, TypeInstance>;
-  protected constructor2type: Map<Function, TypeInstance>;
-  protected typeof2type: Map<string, TypeInstance>;
+  private value2type: Map<unknown, TypeInstance>;
+  private constructor2type: Map<unknown, TypeInstance>;
+  private typeof2type: Map<unknown, TypeInstance>;
 
   /* CONSTRUCTOR */
 
