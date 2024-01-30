@@ -2,9 +2,8 @@
 /* IMPORT */
 
 import {serialize} from '../bundle/index.js';
-import {SERIALIZABLE} from '../test/fixtures.js';
+import {RICH_DESERIALIZABLE} from './fixtures.js';
 
 /* MAIN */
 
-console.log ( serialize ( SERIALIZABLE ).length );
-// console.log ( serialize ( SERIALIZABLE ) );
+console.log ( serialize ( RICH_DESERIALIZABLE ).length );

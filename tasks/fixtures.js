@@ -9,7 +9,17 @@ Error.stackTraceLimit = 0;
 
 /* MAIN */
 
-const SERIALIZABLE = {
+const PLAIN_SERIALIZABLE = {
+  booleanTrue: true,
+  booleanFalse: false,
+  number: 123,
+  string: 'string',
+  stringLong: 'a'.repeat ( 1_000_000 ),
+  null: null,
+  undefined: undefined
+};
+
+const RICH_SERIALIZABLE = {
   bigint: 123n,
   booleanTrue: true,
   booleanFalse: false,
@@ -45,8 +55,8 @@ const SERIALIZABLE = {
   uint8clampedarray: new Uint8ClampedArray ([ 0, 1, 2, 3, 4, 5, 6 ])
 };
 
-const DESERIALIZABLE = serialize ( SERIALIZABLE );
+const RICH_DESERIALIZABLE = serialize ( RICH_SERIALIZABLE );
 
 /* EXPORT */
 
-export {SERIALIZABLE, DESERIALIZABLE};
+export {PLAIN_SERIALIZABLE, RICH_DESERIALIZABLE, RICH_SERIALIZABLE};
