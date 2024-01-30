@@ -34,7 +34,7 @@ class _PlainObject extends Type<Record<string, unknown>> {
     const flagSealed = isSealed ( value ) ? FLAG_SEALED : 0;
     const flags = `${flagProtoless | flagExtensible | flagFrozen | flagSealed}`;
 
-    const stringKeys = this.siero.serialize ( Object.keys ( value ), options );
+    const stringKeys = this.siero.pack ( Object.keys ( value ) );
     const stringValues = this.siero.serialize ( Object.values ( value ), options );
 
     const symbols = Object.getOwnPropertySymbols ( value );
@@ -57,7 +57,7 @@ class _PlainObject extends Type<Record<string, unknown>> {
     const flagFrozen = flags & FLAG_FROZEN;
     const flagSealed = flags & FLAG_SEALED;
 
-    const stringKeys = castArray ( this.siero.deserialize ( unpacked[1] ) );
+    const stringKeys = this.siero.unpack ( unpacked[1] );
     const stringValues = castArray ( this.siero.deserialize ( unpacked[2] ) );
 
     const symbolKeys = castArray ( this.siero.deserialize ( unpacked[3] ) );
