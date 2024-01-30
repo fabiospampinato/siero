@@ -7,11 +7,11 @@ import Packer from './addons/packer';
 import Realms from './addons/realms';
 import Serializer from './addons/serializer';
 import {getRandomId} from './utils';
-import type {Disposer, SerializeOptions, DeserializeOptions} from './types';
+import type {Disposer, Options, SerializeOptions, DeserializeOptions} from './types';
 
 /* MAIN */
 
-//TODO: Probably multiple Siero instances within an actual realm should share the same data and realm id
+//TODO: Probably multiple Siero instances within an actual realm should get deduplicated
 
 class Siero {
 
@@ -26,9 +26,9 @@ class Siero {
 
   /* CONSTRUCTOR */
 
-  constructor () {
+  constructor ( options: Options = {} ) {
 
-    this.realm = getRandomId ();
+    this.realm = options.realm ?? getRandomId ();
     this.commands = new Commands ( this );
     this.contexts = new Contexts ( this );
     this.packer = new Packer ( this );
