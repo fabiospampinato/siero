@@ -8,8 +8,6 @@ import type {DeserializeOptions, SerializeOptions, SieroInstance} from '../types
 /* MAIN */
 
 //TODO: Throw on classes, and maybe generators also, though
-//TODO: Handle .call, .apply and .bind too
-//TODO: Handle .name and .length too
 //TODO: Use WeakMaps + FinalizationRegistry, to handle the case where the function is just garbage-collected without settling
 
 class _Function extends Type<Function> {
@@ -93,17 +91,24 @@ class _Function extends Type<Function> {
 
     const id = mapGetOrSet ( this.siero.contexts.function2id, value, () => `${this.siero.realm}-${this.siero.contexts.functionCounter++}` );
     const fn = ( this.siero.contexts.id2function[id] ||= value );
+    const packed = this.siero.pack ([ value.name, `${value.length}`, id ]);
 
-    return id;
+    return packed;
 
   }
 
   deserialize ( value: string, options?: DeserializeOptions ): Function {
 
-    const fn = ( this.siero.contexts.id2function[value] ||= ( ...args: unknown[] ) => {
+    const [name, length, comboId] = this.siero.unpack ( value );
+    const [sourceRealm, fnId] = comboId.split ( '-' );
+
+    const existing = this.siero.contexts.id2function[comboId];
+
+    if ( existing ) return existing;
+
+    const fn = ( this.siero.contexts.id2function[comboId] = ( ...args: unknown[] ) => {
 
       const targetRealm = this.siero.realm;
-      const [sourceRealm, fnId] = value.split ( '-' );
       const resultId = this.siero.contexts.functionResultCounter++;
       const id = `${targetRealm}-${sourceRealm}-${fnId}-${resultId}`;
       const promise = promiseWithResolvers ();
@@ -115,7 +120,10 @@ class _Function extends Type<Function> {
 
     });
 
-    const id = mapGetOrSet ( this.siero.contexts.function2id, fn, () => value );
+    Object.defineProperty ( fn, 'name', { value: name } );
+    Object.defineProperty ( fn, 'length', { value: parseInt ( length ) } );
+
+    const id = mapGetOrSet ( this.siero.contexts.function2id, fn, () => comboId );
 
     return fn;
 
