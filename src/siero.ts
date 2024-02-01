@@ -6,7 +6,7 @@ import Contexts from './addons/contexts';
 import Packer from './addons/packer';
 import Realms from './addons/realms';
 import Serializer from './addons/serializer';
-import ReferenceContext from './types/reference.context';
+import ReferenceContext from './datatypes/special/reference.context';
 import {getRandomId} from './utils';
 import type {Disposer, Options, SerializeOptions, DeserializeOptions} from './types';
 

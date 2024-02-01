@@ -2,7 +2,7 @@
 /* IMPORT */
 
 import {TYPES} from '../constants';
-import Reference from '../types/reference';
+import Reference from '../datatypes/special/reference';
 import Addon from './addon';
 import type {ReferenceContext, DeserializeContext, SerializeContext, DeserializeOptions, SerializeOptions, TypeInstance, SieroInstance} from '../types';
 
