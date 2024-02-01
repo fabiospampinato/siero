@@ -454,6 +454,55 @@ describe ( 'Siero', () => {
 
     });
 
+    it ( 'error', () => {
+
+      testReferences ( new Error () );
+      testReferences ( new Error ( 'asd' ) );
+
+    });
+
+    it ( 'eval error', () => {
+
+      testReferences ( new EvalError () );
+      testReferences ( new EvalError ( 'asd' ) );
+
+    });
+
+    it ( 'range error', () => {
+
+      testReferences ( new RangeError () );
+      testReferences ( new RangeError ( 'asd' ) );
+
+    });
+
+    it ( 'reference error', () => {
+
+      testReferences ( new ReferenceError () );
+      testReferences ( new ReferenceError ( 'asd' ) );
+
+    });
+
+    it ( 'syntax error', () => {
+
+      testReferences ( new SyntaxError () );
+      testReferences ( new SyntaxError ( 'asd' ) );
+
+    });
+
+    it ( 'type error', () => {
+
+      testReferences ( new TypeError () );
+      testReferences ( new TypeError ( 'asd' ) );
+
+    });
+
+    it ( 'uri error', () => {
+
+      testReferences ( new URIError () );
+      testReferences ( new URIError ( 'asd' ) );
+
+    });
+
     it.skip ( 'plain object', () => {
 
       const cyclic = {};
