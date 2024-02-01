@@ -423,6 +423,64 @@ describe ( 'Siero', () => {
 
   describe ( 'supports deduplicating references', it => {
 
+    // it ( 'array', () => {
+
+    //   testReferences ( [] );
+
+    // });
+
+    // it ( 'array buffer', () => {
+
+    //   testReferences ( new Int8Array ([ 1, 2, 3 ]).buffer );
+
+    // });
+
+    // it ( 'date', () => {
+
+    //   testReferences ( new Date () );
+
+    // });
+
+    // it ( 'function', () => {
+
+    //   testReferences ( ( a, b ) => a + b );
+
+    // });
+
+    it ( 'map', () => {
+
+      testReferences ( new Map () );
+
+    });
+
+    it ( 'plain object', () => {
+
+      testReferences ( {} );
+
+    });
+
+    it ( 'plain object (circular)', () => {
+
+      const cyclic = {};
+
+      cyclic.cyclic = cyclic;
+
+      testReferences ( cyclic );
+
+    });
+
+    // it ( 'regexp', () => {
+
+    //   testReferences ( /a/gmi );
+
+    // });
+
+    it ( 'set', () => {
+
+      testReferences ( new Set () );
+
+    });
+
     it ( 'boxed bigint', () => {
 
       testReferences ( Object ( 123n ) );
@@ -582,16 +640,6 @@ describe ( 'Siero', () => {
 
       testReferences ( new Uint8ClampedArray () );
       testReferences ( new Uint8ClampedArray ([ 1, 2, 3 ]) );
-
-    });
-
-    it.skip ( 'plain object', () => {
-
-      const cyclic = {};
-
-      cyclic.cyclic = cyclic;
-
-      testReferences ( cyclic );
 
     });
 

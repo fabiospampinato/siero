@@ -28,7 +28,7 @@ class _PlainObject extends Type<Record<string, unknown>> {
 
   serialize ( value: Record<number | string | symbol, unknown>, options: SerializeOptions, context: SerializeContext ): string {
 
-    // this.siero.serializer.ref ( value, context );
+    this.siero.serializer.ref ( value, context );
 
     const flagProtoless = isProtoless ( value ) ? FLAG_PROTOLESS : 0;
     const flagExtensible = isExtensible ( value ) ? FLAG_EXTENSIBLE : 0;
@@ -61,7 +61,7 @@ class _PlainObject extends Type<Record<string, unknown>> {
 
     const object: Record<number | string | symbol, unknown> = flagProtoless ? Object.create ( null ) : {};
 
-    // this.siero.serializer.ref ( object, context );
+    this.siero.serializer.ref ( object, context );
 
     const stringKeys = this.siero.packer.unpack ( unpacked[1] );
     const stringValues = castArray ( this.siero.serializer.deserialize ( unpacked[2], options, context ) );

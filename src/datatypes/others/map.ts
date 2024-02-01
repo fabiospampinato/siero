@@ -17,6 +17,8 @@ class _Map extends Type<Map<unknown, unknown>> {
 
   serialize ( value: Map<unknown, unknown>, options: SerializeOptions, context: SerializeContext ): string {
 
+    this.siero.serializer.ref ( value, context );
+
     const keys = this.siero.serializer.serialize ( Array.from ( value.keys () ), options, context );
     const values = this.siero.serializer.serialize ( Array.from ( value.values () ), options, context );
     const packed = this.siero.packer.pack ([ keys, values ]);
@@ -27,10 +29,13 @@ class _Map extends Type<Map<unknown, unknown>> {
 
   deserialize ( value: string, options: DeserializeOptions, context: DeserializeContext ): Map<unknown, unknown> {
 
+    const map = new Map ();
+
+    this.siero.serializer.ref ( map, context );
+
     const unpacked = this.siero.packer.unpack ( value );
     const keys = castArray ( this.siero.serializer.deserialize ( unpacked[0], options, context ) );
     const values = castArray ( this.siero.serializer.deserialize ( unpacked[1], options, context ) );
-    const map = new Map ();
 
     for ( let i = 0, l = keys.length; i < l; i++ ) {
 
