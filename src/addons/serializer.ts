@@ -2,8 +2,10 @@
 /* IMPORT */
 
 import {TYPES} from '../constants';
+import Reference from '../types/reference';
+import ReferenceContext from '../types/reference.context';
 import Addon from './addon';
-import type {DeserializeOptions, SerializeOptions, TypeInstance, SieroInstance} from '../types';
+import type {DeserializeContext, SerializeContext, DeserializeOptions, SerializeOptions, TypeInstance, SieroInstance} from '../types';
 
 /* MAIN */
 
@@ -19,13 +21,15 @@ class Serializer extends Addon {
   private constructor2type: Map<unknown, TypeInstance>;
   private typeof2type: Map<unknown, TypeInstance>;
 
+  private reference: Reference;
+
   /* CONSTRUCTOR */
 
   constructor ( siero: SieroInstance ) {
 
     super ( siero );
 
-    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const alphabet = '@ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     const types = TYPES;
 
     if ( types.length >= alphabet.length ) throw new Error ( `More than ${alphabet.length} types are not supported` );
@@ -37,6 +41,8 @@ class Serializer extends Addon {
     this.typeof2type = new Map ( this.types.map ( type => [type.typeof, type] ) );
     this.constructor2type = new Map ( this.types.map ( type => [type.Constructor, type] ) );
     this.value2type = new Map ( this.types.map ( type => [type.value, type] ) );
+
+    this.reference = new Reference ( siero );
 
   }
 
@@ -63,20 +69,30 @@ class Serializer extends Addon {
 
   };
 
-  serialize = ( value: unknown, options?: SerializeOptions ): string => {
+  ref = ( value: object, context: ReferenceContext = new ReferenceContext () ): void => {
+
+    this.reference.ref ( value, context );
+
+  };
+
+  serialize = ( value: unknown, options?: SerializeOptions, context: SerializeContext = new ReferenceContext () ): string => {
+
+    const reference = this.reference.has ( value, context );
+
+    if ( reference ) return `@${reference}`;
 
     const type = this.infer ( value );
 
     if ( !type ) throw new Error ( 'Unserializable value' );
 
     const id = this.type2id.get ( type );
-    const data = type.serialize ( value, options );
+    const data = type.serialize ( value, options, context );
 
     return `${id}${data}`;
 
   };
 
-  deserialize = ( value: string, options?: DeserializeOptions ): unknown => {
+  deserialize = ( value: string, options?: DeserializeOptions, context: DeserializeContext = new ReferenceContext () ): unknown => {
 
     const id = value[0];
     const data = value.slice ( 1 );
@@ -84,7 +100,7 @@ class Serializer extends Addon {
 
     if ( !type ) throw new Error ( 'Undeserializable value' );
 
-    return type.deserialize ( data, options );
+    return type.deserialize ( data, options, context );
 
   };
 

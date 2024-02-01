@@ -3,7 +3,7 @@
 
 import {arrayMap} from '../utils';
 import Type from './type';
-import type {DeserializeOptions, SerializeOptions} from '../types';
+import type {DeserializeContext, SerializeContext, DeserializeOptions, SerializeOptions} from '../types';
 
 /* MAIN */
 
@@ -15,19 +15,19 @@ class _Array extends Type<Array<unknown>> {
 
   /* API */
 
-  serialize ( value: Array<unknown>, options?: SerializeOptions ): string {
+  serialize ( value: Array<unknown>, options?: SerializeOptions, context?: SerializeContext ): string {
 
-    const values = arrayMap ( value, value => this.siero.serialize ( value, options ) );
-    const packed = this.siero.pack ( values );
+    const values = arrayMap ( value, value => this.siero.serializer.serialize ( value, options, context ) );
+    const packed = this.siero.packer.pack ( values );
 
     return packed;
 
   }
 
-  deserialize ( value: string, options?: DeserializeOptions ): Array<unknown> {
+  deserialize ( value: string, options?: DeserializeOptions, context?: DeserializeContext ): Array<unknown> {
 
-    const unpacked = this.siero.unpack ( value );
-    const values = unpacked.map ( value => this.siero.deserialize ( value, options ) );
+    const unpacked = this.siero.packer.unpack ( value );
+    const values = unpacked.map ( value => this.siero.serializer.deserialize ( value, options, context ) );
 
     return values;
 

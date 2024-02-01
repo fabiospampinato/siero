@@ -2,7 +2,7 @@
 /* IMPORT */
 
 import Type from './type';
-import type {Constructor, DeserializeOptions, SerializeOptions, SieroInstance} from '../types';
+import type {Constructor, DeserializeContext, SerializeContext, DeserializeOptions, SerializeOptions, SieroInstance} from '../types';
 
 /* MAIN */
 
@@ -24,28 +24,28 @@ abstract class AbstractError<T extends Error> extends Type<T> {
 
   /* API */
 
-  serialize ( value: T, options?: SerializeOptions ): string {
+  serialize ( value: T, options?: SerializeOptions, context?: SerializeContext ): string {
 
     const name = value.name;
     const message = value.message;
     const stack = value.stack || '';
-    const cause = value.cause ? this.siero.serialize ( value.cause, options ) : '';
-    const packed = this.siero.pack ([ name, message, stack, cause ]);
+    const cause = value.cause ? this.siero.serializer.serialize ( value.cause, options, context ) : '';
+    const packed = this.siero.packer.pack ([ name, message, stack, cause ]);
 
     return packed;
 
   }
 
-  deserialize ( value: string, options?: DeserializeOptions ): T {
+  deserialize ( value: string, options?: DeserializeOptions, context?: DeserializeContext ): T {
 
-    const unpacked = this.siero.unpack ( value );
+    const unpacked = this.siero.packer.unpack ( value );
     const [name, message, stack, cause] = unpacked;
     const error = new this.Constructor ();
 
     error.name = name;
     error.message = message;
     error.stack = stack;
-    error.cause = cause ? this.siero.deserialize ( cause, options ) : undefined;
+    error.cause = cause ? this.siero.serializer.deserialize ( cause, options, context ) : undefined;
 
     return error;
 

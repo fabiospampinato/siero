@@ -3,7 +3,7 @@
 
 import Known from 'known-symbols';
 import Type from './type';
-import type {DeserializeOptions, SerializeOptions} from '../types';
+import type {DeserializeContext, SerializeContext, DeserializeOptions, SerializeOptions} from '../types';
 
 /* MAIN */
 
@@ -17,7 +17,7 @@ class _Symbol extends Type<symbol> {
 
   /* API */
 
-  serialize ( value: symbol, options?: SerializeOptions ): string {
+  serialize ( value: symbol, options?: SerializeOptions, context?: SerializeContext ): string {
 
     const known = Known.getName ( value );
 
@@ -30,7 +30,7 @@ class _Symbol extends Type<symbol> {
 
   }
 
-  deserialize ( value: string, options?: DeserializeOptions ): symbol {
+  deserialize ( value: string, options?: DeserializeOptions, context?: DeserializeContext ): symbol {
 
     const known = Known.getSymbol ( value );
 

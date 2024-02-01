@@ -2,7 +2,7 @@
 /* IMPORT */
 
 import type {SieroInstance} from '../types';
-import type {SerializeOptions, DeserializeOptions} from '../types';
+import type {DeserializeContext, SerializeContext, DeserializeOptions, SerializeOptions} from '../types';
 
 /* MAIN */
 
@@ -25,8 +25,8 @@ abstract class Type<T> {
 
   /* API */
 
-  abstract serialize ( value: T, options?: SerializeOptions ): string;
-  abstract deserialize ( value: string, options?: DeserializeOptions ): T;
+  abstract serialize ( value: T, options?: SerializeOptions, context?: DeserializeContext ): string;
+  abstract deserialize ( value: string, options?: DeserializeOptions, context?: DeserializeContext ): T;
 
 }
 

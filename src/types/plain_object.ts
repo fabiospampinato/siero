@@ -3,7 +3,7 @@
 
 import {castArray} from '../utils';
 import Type from './type';
-import type {DeserializeOptions, SerializeOptions} from '../types';
+import type {DeserializeContext, SerializeContext, DeserializeOptions, SerializeOptions} from '../types';
 
 /* HELPERS */
 
@@ -26,7 +26,7 @@ class _PlainObject extends Type<Record<string, unknown>> {
 
   /* API */
 
-  serialize ( value: Record<number | string | symbol, unknown>, options?: SerializeOptions ): string {
+  serialize ( value: Record<number | string | symbol, unknown>, options?: SerializeOptions, context?: SerializeContext ): string {
 
     const flagProtoless = isProtoless ( value ) ? FLAG_PROTOLESS : 0;
     const flagExtensible = isExtensible ( value ) ? FLAG_EXTENSIBLE : 0;
@@ -34,22 +34,22 @@ class _PlainObject extends Type<Record<string, unknown>> {
     const flagSealed = isSealed ( value ) ? FLAG_SEALED : 0;
     const flags = `${flagProtoless | flagExtensible | flagFrozen | flagSealed}`;
 
-    const stringKeys = this.siero.pack ( Object.keys ( value ) );
-    const stringValues = this.siero.serialize ( Object.values ( value ), options );
+    const stringKeys = this.siero.packer.pack ( Object.keys ( value ) );
+    const stringValues = this.siero.serializer.serialize ( Object.values ( value ), options, context );
 
     const symbols = Object.getOwnPropertySymbols ( value );
-    const symbolKeys = this.siero.serialize ( symbols, options );
-    const symbolValues = this.siero.serialize ( symbols.map ( symbol => value[symbol] ), options );
+    const symbolKeys = this.siero.serializer.serialize ( symbols, options, context );
+    const symbolValues = this.siero.serializer.serialize ( symbols.map ( symbol => value[symbol] ), options, context );
 
-    const packed = this.siero.pack ([ flags, stringKeys, stringValues, symbolKeys, symbolValues ]);
+    const packed = this.siero.packer.pack ([ flags, stringKeys, stringValues, symbolKeys, symbolValues ]);
 
     return packed;
 
   }
 
-  deserialize ( value: string, options?: DeserializeOptions ): Record<number | string | symbol, unknown> {
+  deserialize ( value: string, options?: DeserializeOptions, context?: DeserializeContext ): Record<number | string | symbol, unknown> {
 
-    const unpacked = this.siero.unpack ( value );
+    const unpacked = this.siero.packer.unpack ( value );
 
     const flags = parseInt ( unpacked[0] );
     const flagProtoless = flags & FLAG_PROTOLESS;
@@ -57,13 +57,13 @@ class _PlainObject extends Type<Record<string, unknown>> {
     const flagFrozen = flags & FLAG_FROZEN;
     const flagSealed = flags & FLAG_SEALED;
 
-    const stringKeys = this.siero.unpack ( unpacked[1] );
-    const stringValues = castArray ( this.siero.deserialize ( unpacked[2] ) );
-
-    const symbolKeys = castArray ( this.siero.deserialize ( unpacked[3] ) );
-    const symbolValues = castArray ( this.siero.deserialize ( unpacked[4] ) );
-
     const object: Record<number | string | symbol, unknown> = flagProtoless ? Object.create ( null ) : {};
+
+    const stringKeys = this.siero.packer.unpack ( unpacked[1] );
+    const stringValues = castArray ( this.siero.serializer.deserialize ( unpacked[2], options, context ) );
+
+    const symbolKeys = castArray ( this.siero.serializer.deserialize ( unpacked[3], options, context ) );
+    const symbolValues = castArray ( this.siero.serializer.deserialize ( unpacked[4], options, context ) );
 
     for ( let i = 0, l = stringKeys.length; i < l; i++ ) {
 

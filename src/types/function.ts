@@ -3,7 +3,7 @@
 
 import {mapGetOrSet, promiseWithResolvers} from '../utils';
 import Type from './type';
-import type {DeserializeOptions, SerializeOptions, SieroInstance} from '../types';
+import type {DeserializeContext, SerializeContext, DeserializeOptions, SerializeOptions, SieroInstance} from '../types';
 
 /* MAIN */
 
@@ -86,20 +86,20 @@ class _Function extends Type<Function> {
 
   }
 
-  serialize ( value: Function, options?: SerializeOptions ): string {
+  serialize ( value: Function, options?: SerializeOptions, context?: SerializeContext ): string {
 
     const id = mapGetOrSet ( this.siero.contexts.function2id, value, () => `${this.siero.realm}-${this.siero.contexts.functionCounter++}` );
     const afn = ( this.siero.contexts.id2function[id] ||= (async ( ...args: unknown[] ) => value ( ...args )) );
     const aid = mapGetOrSet ( this.siero.contexts.function2id, afn, () => id );
-    const packed = this.siero.pack ([ value.name, `${value.length}`, id ]);
+    const packed = this.siero.packer.pack ([ value.name, `${value.length}`, id ]);
 
     return packed;
 
   }
 
-  deserialize ( value: string, options?: DeserializeOptions ): Function {
+  deserialize ( value: string, options?: DeserializeOptions, context?: DeserializeContext ): Function {
 
-    const [name, length, comboId] = this.siero.unpack ( value );
+    const [name, length, comboId] = this.siero.packer.unpack ( value );
     const [sourceRealm, fnId] = comboId.split ( '-' );
 
     const existing = this.siero.contexts.id2function[comboId];

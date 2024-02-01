@@ -2,7 +2,7 @@
 /* IMPORT */
 
 import Type from './type';
-import type {DeserializeOptions, SerializeOptions} from '../types';
+import type {DeserializeContext, SerializeContext, DeserializeOptions, SerializeOptions} from '../types';
 
 /* MAIN */
 
@@ -14,13 +14,13 @@ class _ArrayBuffer extends Type<ArrayBuffer> {
 
   /* API */
 
-  serialize ( value: ArrayBuffer, options?: SerializeOptions ): string {
+  serialize ( value: ArrayBuffer, options?: SerializeOptions, context?: SerializeContext ): string {
 
     return new Uint8Array ( value ).toString ();
 
   }
 
-  deserialize ( value: string, options?: DeserializeOptions ): ArrayBuffer {
+  deserialize ( value: string, options?: DeserializeOptions, context?: DeserializeContext ): ArrayBuffer {
 
     const values = value ? value.split ( ',' ).map ( Number ) : [];
     const typedArray = new Uint8Array ( values );

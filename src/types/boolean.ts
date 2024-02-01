@@ -2,7 +2,7 @@
 /* IMPORT */
 
 import Type from './type';
-import type {DeserializeOptions, SerializeOptions} from '../types';
+import type {DeserializeContext, SerializeContext, DeserializeOptions, SerializeOptions} from '../types';
 
 /* MAIN */
 
@@ -14,13 +14,13 @@ class _Boolean extends Type<boolean> {
 
   /* API */
 
-  serialize ( value: boolean, options?: SerializeOptions ): string {
+  serialize ( value: boolean, options?: SerializeOptions, context?: SerializeContext ): string {
 
     return value ? '1' : '0';
 
   }
 
-  deserialize ( value: string, options?: DeserializeOptions ): boolean {
+  deserialize ( value: string, options?: DeserializeOptions, context?: DeserializeContext ): boolean {
 
     return value === '1';
 

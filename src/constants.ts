@@ -1,6 +1,8 @@
 
 /* IMPORT */
 
+import Reference from './types/reference';
+
 import BigInt from './types/bigint';
 import Boolean from './types/boolean';
 import Null from './types/null';
@@ -49,6 +51,8 @@ import PlainObject from './types/plain_object';
 /* MAIN */
 
 const TYPES = [
+  Reference,
+
   BigInt,
   Boolean,
   Null,

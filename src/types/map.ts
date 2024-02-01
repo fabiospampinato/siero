@@ -3,7 +3,7 @@
 
 import {castArray} from '../utils';
 import Type from './type';
-import type {DeserializeOptions, SerializeOptions} from '../types';
+import type {DeserializeContext, SerializeContext, DeserializeOptions, SerializeOptions} from '../types';
 
 /* MAIN */
 
@@ -15,21 +15,21 @@ class _Map extends Type<Map<unknown, unknown>> {
 
   /* API */
 
-  serialize ( value: Map<unknown, unknown>, options?: SerializeOptions ): string {
+  serialize ( value: Map<unknown, unknown>, options?: SerializeOptions, context?: SerializeContext ): string {
 
-    const keys = this.siero.serialize ( Array.from ( value.keys () ), options );
-    const values = this.siero.serialize ( Array.from ( value.values () ), options );
-    const packed = this.siero.pack ([ keys, values ]);
+    const keys = this.siero.serializer.serialize ( Array.from ( value.keys () ), options, context );
+    const values = this.siero.serializer.serialize ( Array.from ( value.values () ), options, context );
+    const packed = this.siero.packer.pack ([ keys, values ]);
 
     return packed;
 
   }
 
-  deserialize ( value: string, options?: DeserializeOptions ): Map<unknown, unknown> {
+  deserialize ( value: string, options?: DeserializeOptions, context?: DeserializeContext ): Map<unknown, unknown> {
 
-    const unpacked = this.siero.unpack ( value );
-    const keys = castArray ( this.siero.deserialize ( unpacked[0] ) );
-    const values = castArray ( this.siero.deserialize ( unpacked[1] ) );
+    const unpacked = this.siero.packer.unpack ( value );
+    const keys = castArray ( this.siero.serializer.deserialize ( unpacked[0], options, context ) );
+    const values = castArray ( this.siero.serializer.deserialize ( unpacked[1], options, context ) );
     const map = new Map ();
 
     for ( let i = 0, l = keys.length; i < l; i++ ) {

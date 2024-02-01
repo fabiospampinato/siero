@@ -51,18 +51,6 @@ class Siero {
 
   };
 
-  pack = ( unpacked: string[] ): string => {
-
-    return this.packer.pack ( unpacked );
-
-  };
-
-  unpack = ( packed: string ): string[] => {
-
-    return this.packer.unpack ( packed );
-
-  };
-
   serialize = ( value: unknown, options?: SerializeOptions ): string => {
 
     return this.serializer.serialize ( value, options );
