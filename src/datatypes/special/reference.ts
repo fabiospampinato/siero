@@ -6,17 +6,17 @@ import type {ReferenceContext, DeserializeContext, SerializeContext, Deserialize
 
 /* MAIN */
 
-class _Reference extends Type<object> {
+class _Reference extends Type<unknown> {
 
   /* API */
 
-  has ( value: object, context: ReferenceContext ): string | undefined {
+  has ( value: unknown, context: ReferenceContext ): boolean {
 
-    return context.value2reference.get ( value );
+    return context.value2reference.has ( value );
 
   }
 
-  ref ( value: object, context: ReferenceContext ): void {
+  register ( value: unknown, context: ReferenceContext ): void { //TODO: Optimize this, we only need to fill one map at a time
 
     const reference = `${context.referenceCounter++}`;
 
@@ -25,7 +25,7 @@ class _Reference extends Type<object> {
 
   }
 
-  serialize ( value: object, options: SerializeOptions, context: SerializeContext ): string {
+  serialize ( value: unknown, options: SerializeOptions, context: SerializeContext ): string {
 
     const reference = context.value2reference.get ( value );
 
@@ -35,7 +35,7 @@ class _Reference extends Type<object> {
 
   }
 
-  deserialize ( reference: string, options: DeserializeOptions, context: DeserializeContext ): object {
+  deserialize ( reference: string, options: DeserializeOptions, context: DeserializeContext ): unknown {
 
     const value = context.reference2value.get ( reference );
 

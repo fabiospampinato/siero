@@ -5,7 +5,7 @@ type Constructor<T, U extends unknown[] = []> = { new ( ...args: U ): T };
 
 type Disposer = () => void;
 
-type ReferenceContext = { referenceCounter: number, value2reference: Map<object, string>, reference2value: Map<string, object> };
+type ReferenceContext = { referenceCounter: number, value2reference: Map<unknown, string>, reference2value: Map<string, unknown> };
 type DeserializeContext = ReferenceContext;
 type SerializeContext = ReferenceContext;
 

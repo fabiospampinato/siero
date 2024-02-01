@@ -16,7 +16,7 @@ class _RegExp extends Type<RegExp> {
 
   serialize ( value: RegExp, options: SerializeOptions, context: SerializeContext ): string {
 
-    this.siero.serializer.ref ( value, context );
+    this.siero.serializer.register ( value, context );
 
     const {source, flags} = value;
     const packed = this.siero.packer.pack ([ source, flags ]);
@@ -31,7 +31,7 @@ class _RegExp extends Type<RegExp> {
     const [source, flags] = unpacked;
     const re = new RegExp ( source, flags );
 
-    this.siero.serializer.ref ( re, context );
+    this.siero.serializer.register ( re, context );
 
     return re;
 

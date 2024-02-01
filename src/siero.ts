@@ -12,8 +12,6 @@ import type {Disposer, Options, SerializeOptions, DeserializeOptions} from './ty
 
 /* MAIN */
 
-//TODO: Probably multiple Siero instances within an actual realm should get deduplicated
-
 class Siero {
 
   /* VARIABLES */

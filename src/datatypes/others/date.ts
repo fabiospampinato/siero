@@ -16,7 +16,7 @@ class _Date extends Type<Date> {
 
   serialize ( value: Date, options: SerializeOptions, context: SerializeContext ): string {
 
-    this.siero.serializer.ref ( value, context );
+    this.siero.serializer.register ( value, context );
 
     return value.getTime ().toString ();
 
@@ -26,7 +26,7 @@ class _Date extends Type<Date> {
 
     const date = new Date ( parseInt ( value ) );
 
-    this.siero.serializer.ref ( date, context );
+    this.siero.serializer.register ( date, context );
 
     return date;
 

@@ -6,7 +6,7 @@ import type {DeserializeContext, SerializeContext, DeserializeOptions, Serialize
 
 /* MAIN */
 
-class Absract extends Type<object> {
+abstract class Absract extends Type<object> {
 
   /* VARIABLES */
 
@@ -26,7 +26,7 @@ class Absract extends Type<object> {
 
   serialize ( value: object, options: SerializeOptions, context: SerializeContext ): string {
 
-    this.siero.serializer.ref ( value, context );
+    this.siero.serializer.register ( value, context );
 
     return this.siero.serializer.serialize ( value.valueOf (), options, context );
 
@@ -36,7 +36,7 @@ class Absract extends Type<object> {
 
     const boxed = Object ( this.siero.serializer.deserialize ( value, options, context ) );
 
-    this.siero.serializer.ref ( boxed, context );
+    this.siero.serializer.register ( boxed, context );
 
     return boxed;
 

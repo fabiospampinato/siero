@@ -50,7 +50,7 @@ import PlainObject from './datatypes/others/plain_object';
 
 /* MAIN */
 
-const TYPES = [
+const TYPES = <const> [
   Reference,
 
   BigInt,

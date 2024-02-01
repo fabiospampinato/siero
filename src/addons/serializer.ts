@@ -41,13 +41,13 @@ class Serializer extends Addon {
     this.constructor2type = new Map ( this.types.map ( type => [type.Constructor, type] ) );
     this.value2type = new Map ( this.types.map ( type => [type.value, type] ) );
 
-    this.reference = new Reference ( siero );
+    this.reference = this.types[0] as Reference; //TSC
 
   }
 
   /* API */
 
-  infer = ( value: unknown ): TypeInstance | undefined => {
+  infer = ( value: unknown, context: ReferenceContext ): TypeInstance | undefined => {
 
     if ( value === null ) {
 
@@ -58,29 +58,31 @@ class Serializer extends Addon {
     const type = typeof value;
     const Constructor = value?.constructor;
 
-    if ( type === 'object' && Constructor !== undefined ) {
+    if ( ( type === 'object' || type === 'function' ) && this.reference.has ( value, context ) ) {
+
+      return this.reference;
+
+    } else if ( type === 'object' && Constructor !== undefined ) {
 
       return this.constructor2type.get ( Constructor );
 
-    }
+    } else {
 
-    return this.typeof2type.get ( type );
+      return this.typeof2type.get ( type );
+
+    }
 
   };
 
-  ref = ( value: object, context: ReferenceContext ): void => {
+  register = ( value: object, context: ReferenceContext ): void => {
 
-    this.reference.ref ( value, context );
+    this.reference.register ( value, context );
 
   };
 
   serialize = ( value: unknown, options: SerializeOptions, context: SerializeContext ): string => {
 
-    const reference = this.reference.has ( value, context );
-
-    if ( reference ) return `@${reference}`;
-
-    const type = this.infer ( value );
+    const type = this.infer ( value, context );
 
     if ( !type ) throw new Error ( 'Unserializable value' );
 

@@ -32,24 +32,38 @@ class _Promise extends Type<Promise<unknown>> {
     const realms = this.siero.contexts.id2promiseRealms[id];
 
     if ( realms ) {
+
       delete this.siero.contexts.id2promiseRealms[id];
+
       for ( const realm of realms ) {
+
         if ( realm === this.siero.realm ) continue;
         if ( !this.siero.realms.has ( realm ) ) continue;
+
         this.siero.realms.call ( realm, 'promise.settle', [id, positive, value] );
+
       }
+
     }
 
     const promise = this.siero.contexts.id2promise[id];
 
     if ( promise ) {
+
       delete this.siero.contexts.id2promise[id];
+
       this.siero.contexts.promise2id.delete ( promise.promise );
+
       if ( positive ) {
+
         promise.resolve ( value );
+
       } else {
+
         promise.reject ( value );
+
       }
+
     }
 
   }

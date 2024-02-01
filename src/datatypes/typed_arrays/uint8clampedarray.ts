@@ -1,12 +1,12 @@
 
 /* IMPORT */
 
-import NumberTypedArray from './abstract_number';
+import AbstractNumber from './abstract_number';
 import type {SieroInstance} from '../../types';
 
 /* MAIN */
 
-class _Uint8ClampedArray extends NumberTypedArray<Uint8ClampedArray> {
+class _Uint8ClampedArray extends AbstractNumber<Uint8ClampedArray> {
 
   /* CONSTRUCTOR */
 

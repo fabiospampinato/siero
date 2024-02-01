@@ -441,11 +441,11 @@ describe ( 'Siero', () => {
 
     });
 
-    // it ( 'function', () => {
+    it.skip ( 'function', () => { //TODO
 
-    //   testReferences ( ( a, b ) => a + b );
+      testReferences ( ( a, b ) => a + b );
 
-    // });
+    });
 
     it ( 'map', () => {
 
@@ -466,6 +466,12 @@ describe ( 'Siero', () => {
       cyclic.cyclic = cyclic;
 
       testReferences ( cyclic );
+
+    });
+
+    it.skip ( 'promise', () => { //TODO
+
+      testReferences ( Promise.resolve ( 123 ) );
 
     });
 

@@ -15,7 +15,6 @@ Check out [`siero-worker`](https://github.com/fabiospampinato/siero-worker) for 
 - Getter/setter properties are not preserved as functions, they will instead be resolved.
 - For error objects only the `name`, `message`, `stack` and `cause` properties are preserved.
 - Holes in arrays are not preserved, they are instead replaced by `undefined`.
-- Cyclic references are not currently supported, and duplicated references are encoded inefficiently, for now.
 - The specific type of function constructor (regular, arrow, async etc.) is not preserved.
 - Deserialized functions will always return a Promise, even if the original function didn't.
 - Generators and async generators are not currently serializable.
