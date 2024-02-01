@@ -16,13 +16,19 @@ class _Date extends Type<Date> {
 
   serialize ( value: Date, options: SerializeOptions, context: SerializeContext ): string {
 
+    this.siero.serializer.ref ( value, context );
+
     return value.getTime ().toString ();
 
   }
 
   deserialize ( value: string, options: DeserializeOptions, context: DeserializeContext ): Date {
 
-    return new Date ( parseInt ( value ) );
+    const date = new Date ( parseInt ( value ) );
+
+    this.siero.serializer.ref ( date, context );
+
+    return date;
 
   }
 

@@ -423,23 +423,23 @@ describe ( 'Siero', () => {
 
   describe ( 'supports deduplicating references', it => {
 
-    // it ( 'array', () => {
+    it ( 'array', () => {
 
-    //   testReferences ( [] );
+      testReferences ( [] );
 
-    // });
+    });
 
-    // it ( 'array buffer', () => {
+    it ( 'array buffer', () => {
 
-    //   testReferences ( new Int8Array ([ 1, 2, 3 ]).buffer );
+      testReferences ( new Int8Array ([ 1, 2, 3 ]).buffer );
 
-    // });
+    });
 
-    // it ( 'date', () => {
+    it ( 'date', () => {
 
-    //   testReferences ( new Date () );
+      testReferences ( new Date () );
 
-    // });
+    });
 
     // it ( 'function', () => {
 
@@ -469,11 +469,11 @@ describe ( 'Siero', () => {
 
     });
 
-    // it ( 'regexp', () => {
+    it ( 'regexp', () => {
 
-    //   testReferences ( /a/gmi );
+      testReferences ( /a/gmi );
 
-    // });
+    });
 
     it ( 'set', () => {
 

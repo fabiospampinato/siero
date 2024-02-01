@@ -16,6 +16,8 @@ class _ArrayBuffer extends Type<ArrayBuffer> {
 
   serialize ( value: ArrayBuffer, options: SerializeOptions, context: SerializeContext ): string {
 
+    this.siero.serializer.ref ( value, context );
+
     return new Uint8Array ( value ).toString ();
 
   }
@@ -25,6 +27,8 @@ class _ArrayBuffer extends Type<ArrayBuffer> {
     const values = value ? value.split ( ',' ).map ( Number ) : [];
     const typedArray = new Uint8Array ( values );
     const buffer = typedArray.buffer;
+
+    this.siero.serializer.ref ( buffer, context );
 
     return buffer;
 
