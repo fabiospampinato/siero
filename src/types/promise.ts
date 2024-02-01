@@ -54,7 +54,7 @@ class _Promise extends Type<Promise<unknown>> {
 
   }
 
-  serialize ( value: Promise<unknown>, options?: SerializeOptions, context?: SerializeContext ): string {
+  serialize ( value: Promise<unknown>, options: SerializeOptions, context: SerializeContext ): string {
 
     const id = mapGetOrSet ( this.siero.contexts.promise2id, value, () => `${this.siero.realm}-${this.siero.contexts.promiseCounter++}` );
     const listened = ( id in this.siero.contexts.id2promise );
@@ -75,7 +75,7 @@ class _Promise extends Type<Promise<unknown>> {
 
   }
 
-  deserialize ( value: string, options?: DeserializeOptions, context?: DeserializeContext ): Promise<unknown> {
+  deserialize ( value: string, options: DeserializeOptions, context: DeserializeContext ): Promise<unknown> {
 
     const promise = ( this.siero.contexts.id2promise[value] ||= promiseWithResolvers () );
     const id = mapGetOrSet ( this.siero.contexts.promise2id, promise.promise, () => value );

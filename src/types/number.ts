@@ -14,7 +14,7 @@ class _Number extends Type<number> {
 
   /* API */
 
-  serialize ( value: number, options?: SerializeOptions, context?: SerializeContext ): string {
+  serialize ( value: number, options: SerializeOptions, context: SerializeContext ): string {
 
     if ( value === Infinity ) return 'I';
 
@@ -28,7 +28,7 @@ class _Number extends Type<number> {
 
   }
 
-  deserialize ( value: string, options?: DeserializeOptions, context?: DeserializeContext ): number {
+  deserialize ( value: string, options: DeserializeOptions, context: DeserializeContext ): number {
 
     if ( value === 'I' ) return Infinity;
 

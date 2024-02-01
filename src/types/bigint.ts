@@ -14,13 +14,13 @@ class _BigInt extends Type<bigint> {
 
   /* API */
 
-  serialize ( value: bigint, options?: SerializeOptions, context?: SerializeContext ): string {
+  serialize ( value: bigint, options: SerializeOptions, context: SerializeContext ): string {
 
     return value.toString ();
 
   }
 
-  deserialize ( value: string, options?: DeserializeOptions, context?: DeserializeContext ): bigint {
+  deserialize ( value: string, options: DeserializeOptions, context: DeserializeContext ): bigint {
 
     return BigInt ( value );
 

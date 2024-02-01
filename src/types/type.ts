@@ -25,8 +25,8 @@ abstract class Type<T> {
 
   /* API */
 
-  abstract serialize ( value: T, options?: SerializeOptions, context?: DeserializeContext ): string;
-  abstract deserialize ( value: string, options?: DeserializeOptions, context?: DeserializeContext ): T;
+  abstract serialize ( value: T, options: SerializeOptions, context: DeserializeContext ): string;
+  abstract deserialize ( value: string, options: DeserializeOptions, context: DeserializeContext ): T;
 
 }
 

@@ -14,7 +14,7 @@ class _RegExp extends Type<RegExp> {
 
   /* API */
 
-  serialize ( value: RegExp, options?: SerializeOptions, context?: SerializeContext ): string {
+  serialize ( value: RegExp, options: SerializeOptions, context: SerializeContext ): string {
 
     const {source, flags} = value;
     const packed = this.siero.packer.pack ([ source, flags ]);
@@ -23,7 +23,7 @@ class _RegExp extends Type<RegExp> {
 
   }
 
-  deserialize ( value: string, options?: DeserializeOptions, context?: DeserializeContext ): RegExp {
+  deserialize ( value: string, options: DeserializeOptions, context: DeserializeContext ): RegExp {
 
     const unpacked = this.siero.packer.unpack ( value );
     const [source, flags] = unpacked;

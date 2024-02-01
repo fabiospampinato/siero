@@ -6,6 +6,7 @@ import Contexts from './addons/contexts';
 import Packer from './addons/packer';
 import Realms from './addons/realms';
 import Serializer from './addons/serializer';
+import ReferenceContext from './types/reference.context';
 import {getRandomId} from './utils';
 import type {Disposer, Options, SerializeOptions, DeserializeOptions} from './types';
 
@@ -51,15 +52,15 @@ class Siero {
 
   };
 
-  serialize = ( value: unknown, options?: SerializeOptions ): string => {
+  serialize = ( value: unknown, options: SerializeOptions = {} ): string => {
 
-    return this.serializer.serialize ( value, options );
+    return this.serializer.serialize ( value, options, new ReferenceContext () );
 
   };
 
-  deserialize = ( value: string, options?: DeserializeOptions ): unknown => {
+  deserialize = ( value: string, options: DeserializeOptions = {} ): unknown => {
 
-    return this.serializer.deserialize ( value, options );
+    return this.serializer.deserialize ( value, options, new ReferenceContext () );
 
   };
 

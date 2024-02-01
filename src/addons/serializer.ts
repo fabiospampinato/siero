@@ -3,9 +3,8 @@
 
 import {TYPES} from '../constants';
 import Reference from '../types/reference';
-import ReferenceContext from '../types/reference.context';
 import Addon from './addon';
-import type {DeserializeContext, SerializeContext, DeserializeOptions, SerializeOptions, TypeInstance, SieroInstance} from '../types';
+import type {ReferenceContext, DeserializeContext, SerializeContext, DeserializeOptions, SerializeOptions, TypeInstance, SieroInstance} from '../types';
 
 /* MAIN */
 
@@ -69,13 +68,13 @@ class Serializer extends Addon {
 
   };
 
-  ref = ( value: object, context: ReferenceContext = new ReferenceContext () ): void => {
+  ref = ( value: object, context: ReferenceContext ): void => {
 
     this.reference.ref ( value, context );
 
   };
 
-  serialize = ( value: unknown, options?: SerializeOptions, context: SerializeContext = new ReferenceContext () ): string => {
+  serialize = ( value: unknown, options: SerializeOptions, context: SerializeContext ): string => {
 
     const reference = this.reference.has ( value, context );
 
@@ -92,7 +91,7 @@ class Serializer extends Addon {
 
   };
 
-  deserialize = ( value: string, options?: DeserializeOptions, context: DeserializeContext = new ReferenceContext () ): unknown => {
+  deserialize = ( value: string, options: DeserializeOptions, context: DeserializeContext ): unknown => {
 
     const id = value[0];
     const data = value.slice ( 1 );

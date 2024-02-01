@@ -14,13 +14,13 @@ class _Date extends Type<Date> {
 
   /* API */
 
-  serialize ( value: Date, options?: SerializeOptions, context?: SerializeContext ): string {
+  serialize ( value: Date, options: SerializeOptions, context: SerializeContext ): string {
 
     return value.getTime ().toString ();
 
   }
 
-  deserialize ( value: string, options?: DeserializeOptions, context?: DeserializeContext ): Date {
+  deserialize ( value: string, options: DeserializeOptions, context: DeserializeContext ): Date {
 
     return new Date ( parseInt ( value ) );
 

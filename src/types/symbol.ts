@@ -17,7 +17,7 @@ class _Symbol extends Type<symbol> {
 
   /* API */
 
-  serialize ( value: symbol, options?: SerializeOptions, context?: SerializeContext ): string {
+  serialize ( value: symbol, options: SerializeOptions, context: SerializeContext ): string {
 
     const known = Known.getName ( value );
 
@@ -30,7 +30,7 @@ class _Symbol extends Type<symbol> {
 
   }
 
-  deserialize ( value: string, options?: DeserializeOptions, context?: DeserializeContext ): symbol {
+  deserialize ( value: string, options: DeserializeOptions, context: DeserializeContext ): symbol {
 
     const known = Known.getSymbol ( value );
 

@@ -24,7 +24,7 @@ abstract class AbstractError<T extends Error> extends Type<T> {
 
   /* API */
 
-  serialize ( value: T, options?: SerializeOptions, context?: SerializeContext ): string {
+  serialize ( value: T, options: SerializeOptions, context: SerializeContext ): string {
 
     const name = value.name;
     const message = value.message;
@@ -36,7 +36,7 @@ abstract class AbstractError<T extends Error> extends Type<T> {
 
   }
 
-  deserialize ( value: string, options?: DeserializeOptions, context?: DeserializeContext ): T {
+  deserialize ( value: string, options: DeserializeOptions, context: DeserializeContext ): T {
 
     const unpacked = this.siero.packer.unpack ( value );
     const [name, message, stack, cause] = unpacked;

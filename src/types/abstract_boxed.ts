@@ -24,13 +24,13 @@ class AbstractBoxed extends Type<object> {
 
   /* API */
 
-  serialize ( value: object, options?: SerializeOptions, context?: SerializeContext ): string {
+  serialize ( value: object, options: SerializeOptions, context: SerializeContext ): string {
 
     return this.siero.serializer.serialize ( value.valueOf (), options, context );
 
   }
 
-  deserialize ( value: string, options?: DeserializeOptions, context?: DeserializeContext ): object {
+  deserialize ( value: string, options: DeserializeOptions, context: DeserializeContext ): object {
 
     return Object ( this.siero.serializer.deserialize ( value, options, context ) );
 

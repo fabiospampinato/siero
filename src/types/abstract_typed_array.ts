@@ -33,13 +33,13 @@ abstract class AbstractTypedArray<T extends TypedArray, U extends bigint | numbe
 
   /* API */
 
-  serialize ( value: T, options?: SerializeOptions, context?: SerializeContext ): string {
+  serialize ( value: T, options: SerializeOptions, context: SerializeContext ): string {
 
     return value.toString ();
 
   }
 
-  deserialize ( value: string, options?: DeserializeOptions, context?: DeserializeContext ): T {
+  deserialize ( value: string, options: DeserializeOptions, context: DeserializeContext ): T {
 
     const values = value ? value.split ( ',' ).map ( this.Parser ) : [];
     const typedArray = new this.Constructor ( values );

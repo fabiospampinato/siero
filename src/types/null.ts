@@ -14,13 +14,13 @@ class _Null extends Type<null> {
 
   /* API */
 
-  serialize ( value: null, options?: SerializeOptions, context?: SerializeContext ): string {
+  serialize ( value: null, options: SerializeOptions, context: SerializeContext ): string {
 
     return '';
 
   }
 
-  deserialize ( value: string, options?: DeserializeOptions, context?: DeserializeContext ): null {
+  deserialize ( value: string, options: DeserializeOptions, context: DeserializeContext ): null {
 
     return null;
 

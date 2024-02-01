@@ -10,24 +10,24 @@ class _Reference extends Type<object> {
 
   /* API */
 
-  has ( value: object, context?: ReferenceContext ): string | undefined {
+  has ( value: object, context: ReferenceContext ): string | undefined {
 
-    return context?.value2reference.get ( value );
-
-  }
-
-  ref ( value: object, context?: ReferenceContext ): void {
-
-    const reference = `${context!.referenceCounter++}`;
-
-    context?.value2reference.set ( value, reference );
-    context?.reference2value.set ( reference, value );
+    return context.value2reference.get ( value );
 
   }
 
-  serialize ( value: object, options?: SerializeOptions, context?: SerializeContext ): string {
+  ref ( value: object, context: ReferenceContext ): void {
 
-    const reference = context?.value2reference.get ( value );
+    const reference = `${context.referenceCounter++}`;
+
+    context.value2reference.set ( value, reference );
+    context.reference2value.set ( reference, value );
+
+  }
+
+  serialize ( value: object, options: SerializeOptions, context: SerializeContext ): string {
+
+    const reference = context.value2reference.get ( value );
 
     if ( !reference ) throw new Error ( 'Reference for value not found' );
 
@@ -35,9 +35,9 @@ class _Reference extends Type<object> {
 
   }
 
-  deserialize ( reference: string, options?: DeserializeOptions, context?: DeserializeContext ): object {
+  deserialize ( reference: string, options: DeserializeOptions, context: DeserializeContext ): object {
 
-    const value = context?.reference2value.get ( reference );
+    const value = context.reference2value.get ( reference );
 
     if ( !value ) throw new Error ( 'Referenced value not found' );
 

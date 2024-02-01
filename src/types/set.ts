@@ -15,7 +15,7 @@ class _Set extends Type<Set<unknown>> {
 
   /* API */
 
-  serialize ( value: Set<unknown>, options?: SerializeOptions, context?: SerializeContext ): string {
+  serialize ( value: Set<unknown>, options: SerializeOptions, context: SerializeContext ): string {
 
     const values = Array.from ( value.values () );
     const packed = this.siero.serializer.serialize ( values, options, context );
@@ -24,7 +24,7 @@ class _Set extends Type<Set<unknown>> {
 
   }
 
-  deserialize ( value: string, options?: DeserializeOptions, context?: DeserializeContext ): Set<unknown> {
+  deserialize ( value: string, options: DeserializeOptions, context: DeserializeContext ): Set<unknown> {
 
     const values = castArray ( this.siero.serializer.deserialize ( value, options, context ) );
     const set = new Set ( values );

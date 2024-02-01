@@ -14,13 +14,13 @@ class _Undefined extends Type<undefined> {
 
   /* API */
 
-  serialize ( value: undefined, options?: SerializeOptions, context?: SerializeContext ): string {
+  serialize ( value: undefined, options: SerializeOptions, context: SerializeContext ): string {
 
     return '';
 
   }
 
-  deserialize ( value: string, options?: DeserializeOptions, context?: DeserializeContext ): undefined {
+  deserialize ( value: string, options: DeserializeOptions, context: DeserializeContext ): undefined {
 
     return undefined;
 

@@ -14,13 +14,13 @@ class _ArrayBuffer extends Type<ArrayBuffer> {
 
   /* API */
 
-  serialize ( value: ArrayBuffer, options?: SerializeOptions, context?: SerializeContext ): string {
+  serialize ( value: ArrayBuffer, options: SerializeOptions, context: SerializeContext ): string {
 
     return new Uint8Array ( value ).toString ();
 
   }
 
-  deserialize ( value: string, options?: DeserializeOptions, context?: DeserializeContext ): ArrayBuffer {
+  deserialize ( value: string, options: DeserializeOptions, context: DeserializeContext ): ArrayBuffer {
 
     const values = value ? value.split ( ',' ).map ( Number ) : [];
     const typedArray = new Uint8Array ( values );

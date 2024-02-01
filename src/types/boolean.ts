@@ -14,13 +14,13 @@ class _Boolean extends Type<boolean> {
 
   /* API */
 
-  serialize ( value: boolean, options?: SerializeOptions, context?: SerializeContext ): string {
+  serialize ( value: boolean, options: SerializeOptions, context: SerializeContext ): string {
 
     return value ? '1' : '0';
 
   }
 
-  deserialize ( value: string, options?: DeserializeOptions, context?: DeserializeContext ): boolean {
+  deserialize ( value: string, options: DeserializeOptions, context: DeserializeContext ): boolean {
 
     return value === '1';
 

@@ -14,13 +14,13 @@ class _String extends Type<string> {
 
   /* API */
 
-  serialize ( value: string, options?: SerializeOptions, context?: SerializeContext ): string {
+  serialize ( value: string, options: SerializeOptions, context: SerializeContext ): string {
 
     return value;
 
   }
 
-  deserialize ( value: string, options?: DeserializeOptions, context?: DeserializeContext ): string {
+  deserialize ( value: string, options: DeserializeOptions, context: DeserializeContext ): string {
 
     return value;
 

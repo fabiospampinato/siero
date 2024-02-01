@@ -86,7 +86,7 @@ class _Function extends Type<Function> {
 
   }
 
-  serialize ( value: Function, options?: SerializeOptions, context?: SerializeContext ): string {
+  serialize ( value: Function, options: SerializeOptions, context: SerializeContext ): string {
 
     const id = mapGetOrSet ( this.siero.contexts.function2id, value, () => `${this.siero.realm}-${this.siero.contexts.functionCounter++}` );
     const afn = ( this.siero.contexts.id2function[id] ||= (async ( ...args: unknown[] ) => value ( ...args )) );
@@ -97,7 +97,7 @@ class _Function extends Type<Function> {
 
   }
 
-  deserialize ( value: string, options?: DeserializeOptions, context?: DeserializeContext ): Function {
+  deserialize ( value: string, options: DeserializeOptions, context: DeserializeContext ): Function {
 
     const [name, length, comboId] = this.siero.packer.unpack ( value );
     const [sourceRealm, fnId] = comboId.split ( '-' );
