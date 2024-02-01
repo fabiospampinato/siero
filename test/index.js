@@ -503,6 +503,88 @@ describe ( 'Siero', () => {
 
     });
 
+    it ( 'bigint64array', () => {
+
+      testReferences ( new BigInt64Array () );
+      testReferences ( new BigInt64Array ([ 1n, 2n, 3n, -3n, -2n, -1n ]) );
+
+    });
+
+    it ( 'biguint64array', () => {
+
+      testReferences ( new BigUint64Array () );
+      testReferences ( new BigUint64Array ([ 1n, 2n, 3n ]) );
+
+    });
+
+    it ( 'float32array', () => {
+
+      testReferences ( new Float32Array () );
+      testReferences ( new Float32Array ([ 1.1, 2.2, 3.3 ]) );
+
+    });
+
+    it ( 'float64array', () => {
+
+      testReferences ( new Float64Array () );
+      testReferences ( new Float64Array ([ 1.1, 2.2, 3.3 ]) );
+
+    });
+
+    it ( 'int8array', () => {
+
+      testReferences ( new Int8Array () );
+      testReferences ( new Int8Array ([ 1, 2, 3, -3, -2, -1 ]) );
+
+    });
+
+    it ( 'int16array', () => {
+
+      testReferences ( new Int16Array () );
+      testReferences ( new Int16Array ([ 1, 2, 3, -3, -2, -1 ]) );
+
+    });
+
+    it ( 'int32array', () => {
+
+      testReferences ( new Int32Array () );
+      testReferences ( new Int32Array ([ 1, 2, 3, -3, -2, -1 ]) );
+
+    });
+
+    it ( 'uint8array', () => {
+
+      testReferences ( new Uint8Array () );
+      testReferences ( new Uint8Array ([ 1, 2, 3 ]) );
+
+      const buffer = new Uint8Array ([ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]).buffer;
+
+      testReferences ( new Uint8Array ( buffer, 0, 3 ) );
+      testReferences ( new Uint8Array ( buffer, 3, 6 ) );
+
+    });
+
+    it ( 'uint16array', () => {
+
+      testReferences ( new Uint16Array () );
+      testReferences ( new Uint16Array ([ 1, 2, 3 ]) );
+
+    });
+
+    it ( 'uint32array', () => {
+
+      testReferences ( new Uint32Array () );
+      testReferences ( new Uint32Array ([ 1, 2, 3 ]) );
+
+    });
+
+    it ( 'uint8clampedarray', () => {
+
+      testReferences ( new Uint8ClampedArray () );
+      testReferences ( new Uint8ClampedArray ([ 1, 2, 3 ]) );
+
+    });
+
     it.skip ( 'plain object', () => {
 
       const cyclic = {};
