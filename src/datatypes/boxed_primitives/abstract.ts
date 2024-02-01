@@ -26,13 +26,19 @@ class Absract extends Type<object> {
 
   serialize ( value: object, options: SerializeOptions, context: SerializeContext ): string {
 
+    this.siero.serializer.ref ( value, context );
+
     return this.siero.serializer.serialize ( value.valueOf (), options, context );
 
   }
 
   deserialize ( value: string, options: DeserializeOptions, context: DeserializeContext ): object {
 
-    return Object ( this.siero.serializer.deserialize ( value, options, context ) );
+    const boxed = Object ( this.siero.serializer.deserialize ( value, options, context ) );
+
+    this.siero.serializer.ref ( boxed, context );
+
+    return boxed;
 
   }
 

@@ -6,8 +6,15 @@ import {serialize, deserialize} from '../bundle/index.js';
 
 /* HELPERS */
 
+const testReferences = value => {
+  const clone = deserialize ( serialize ( [value, value] ) );
+  t.deepEqual ( clone, [value, value] );
+  t.is ( clone[0], clone[1] );
+};
+
 const testSerialization = value => {
-  t.deepEqual ( deserialize ( serialize ( value ) ), value );
+  const clone = deserialize ( serialize ( value ) );
+  t.deepEqual ( clone, value );
 };
 
 /* MAIN */
@@ -412,13 +419,48 @@ describe ( 'Siero', () => {
 
     });
 
-    it.skip ( 'cyclic references', () => {
+  });
+
+  describe ( 'supports deduplicating references', it => {
+
+    it ( 'boxed bigint', () => {
+
+      testReferences ( Object ( 123n ) );
+
+    });
+
+    it ( 'boxed boolean', () => {
+
+      testReferences ( Object ( true ) );
+      testReferences ( Object ( false ) );
+
+    });
+
+    it ( 'boxed number', () => {
+
+      testReferences ( Object ( 123 ) );
+
+    });
+
+    it ( 'boxed string', () => {
+
+      testReferences ( Object ( 'foo' ) );
+
+    });
+
+    it ( 'boxed symbol', () => {
+
+      testReferences ( Object ( Symbol () ) );
+
+    });
+
+    it.skip ( 'plain object', () => {
 
       const cyclic = {};
 
       cyclic.cyclic = cyclic;
 
-      testSerialization ( cyclic );
+      testReferences ( cyclic );
 
     });
 
