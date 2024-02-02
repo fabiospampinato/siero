@@ -16,7 +16,7 @@ class _Array extends Type<Array<unknown>> {
 
   serialize ( value: Array<unknown>, options: SerializeOptions, context: SerializeContext ): string {
 
-    this.siero.serializer.register ( value, context );
+    this.siero.serializer.serialized ( value, context );
 
     const values = new Array<string> ( value.length );
 
@@ -45,7 +45,7 @@ class _Array extends Type<Array<unknown>> {
     const unpacked = this.siero.packer.unpack ( value );
     const values = new Array<unknown> ( unpacked.length );
 
-    this.siero.serializer.register ( values, context );
+    this.siero.serializer.deserialized ( values, context );
 
     for ( let i = 0, l = unpacked.length; i < l; i++ ) {
 

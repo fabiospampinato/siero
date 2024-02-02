@@ -35,7 +35,7 @@ abstract class Abstract<T extends TypedArray, U extends bigint | number> extends
 
   serialize ( value: T, options: SerializeOptions, context: SerializeContext ): string {
 
-    this.siero.serializer.register ( value, context );
+    this.siero.serializer.serialized ( value, context );
 
     return value.toString ();
 
@@ -46,7 +46,7 @@ abstract class Abstract<T extends TypedArray, U extends bigint | number> extends
     const values = value ? value.split ( ',' ).map ( this.Parser ) : [];
     const typedArray = new this.Constructor ( values );
 
-    this.siero.serializer.register ( typedArray, context );
+    this.siero.serializer.deserialized ( typedArray, context );
 
     return typedArray;
 

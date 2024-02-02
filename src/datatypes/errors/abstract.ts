@@ -26,7 +26,7 @@ abstract class Abstract<T extends Error> extends Type<T> {
 
   serialize ( value: T, options: SerializeOptions, context: SerializeContext ): string {
 
-    this.siero.serializer.register ( value, context );
+    this.siero.serializer.serialized ( value, context );
 
     const name = value.name;
     const message = value.message;
@@ -42,7 +42,7 @@ abstract class Abstract<T extends Error> extends Type<T> {
 
     const error = new this.Constructor ();
 
-    this.siero.serializer.register ( error, context );
+    this.siero.serializer.deserialized ( error, context );
 
     const unpacked = this.siero.packer.unpack ( value );
     const [name, message, stack, cause] = unpacked;

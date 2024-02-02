@@ -10,18 +10,21 @@ class _Reference extends Type<unknown> {
 
   /* API */
 
-  has ( value: unknown, context: ReferenceContext ): boolean {
+  isSerialized ( value: unknown, context: ReferenceContext ): boolean {
 
     return context.value2reference.has ( value );
 
   }
 
-  register ( value: unknown, context: ReferenceContext ): void { //TODO: Optimize this, we only need to fill one map at a time
+  serialized ( value: unknown, context: ReferenceContext ): void {
 
-    const reference = `${context.referenceCounter++}`;
+    context.value2reference.set ( value, context.referenceCounter++ );
 
-    context.value2reference.set ( value, reference );
-    context.reference2value.set ( reference, value );
+  }
+
+  deserialized ( value: unknown, context: ReferenceContext ): void {
+
+    context.reference2value.push ( value );
 
   }
 
@@ -31,13 +34,13 @@ class _Reference extends Type<unknown> {
 
     if ( !reference ) throw new Error ( 'Reference for value not found' );
 
-    return reference;
+    return `${reference}`;
 
   }
 
   deserialize ( reference: string, options: DeserializeOptions, context: DeserializeContext ): unknown {
 
-    const value = context.reference2value.get ( reference );
+    const value = context.reference2value[parseInt ( reference )];
 
     if ( !value ) throw new Error ( 'Referenced value not found' );
 

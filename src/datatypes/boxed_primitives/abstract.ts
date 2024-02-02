@@ -26,7 +26,7 @@ abstract class Absract extends Type<object> {
 
   serialize ( value: object, options: SerializeOptions, context: SerializeContext ): string {
 
-    this.siero.serializer.register ( value, context );
+    this.siero.serializer.serialized ( value, context );
 
     return this.siero.serializer.serialize ( value.valueOf (), options, context );
 
@@ -36,7 +36,7 @@ abstract class Absract extends Type<object> {
 
     const boxed = Object ( this.siero.serializer.deserialize ( value, options, context ) );
 
-    this.siero.serializer.register ( boxed, context );
+    this.siero.serializer.deserialized ( boxed, context );
 
     return boxed;
 

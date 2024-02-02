@@ -58,7 +58,7 @@ class Serializer extends Addon {
     const type = typeof value;
     const Constructor = value?.constructor;
 
-    if ( ( type === 'object' || type === 'function' ) && this.reference.has ( value, context ) ) {
+    if ( ( type === 'object' || type === 'function' ) && this.reference.isSerialized ( value, context ) ) {
 
       return this.reference;
 
@@ -74,9 +74,15 @@ class Serializer extends Addon {
 
   };
 
-  register = ( value: object, context: ReferenceContext ): void => {
+  serialized = ( value: object, context: ReferenceContext ): void => {
 
-    this.reference.register ( value, context );
+    this.reference.serialized ( value, context );
+
+  };
+
+  deserialized = ( value: object, context: ReferenceContext ): void => {
+
+    this.reference.deserialized ( value, context );
 
   };
 
