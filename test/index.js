@@ -33,6 +33,18 @@ describe ( 'Siero', () => {
 
     });
 
+    it ( 'array holes', () => {
+
+      const clone = deserialize ( serialize ( [,,1,,] ) );
+
+      t.false ( 0 in clone );
+      t.false ( 1 in clone );
+      t.true ( 2 in clone );
+      t.false ( 3 in clone );
+      t.false ( 4 in clone );
+
+    });
+
     it ( 'array buffer', () => {
 
       testSerialization ( new Int8Array ([ 1, 2, 3 ]).buffer );

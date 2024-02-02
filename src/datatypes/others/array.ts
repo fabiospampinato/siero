@@ -1,7 +1,6 @@
 
 /* IMPORT */
 
-import {arrayMap} from '../../utils';
 import Type from '../type';
 import type {DeserializeContext, SerializeContext, DeserializeOptions, SerializeOptions} from '../../types';
 
@@ -19,7 +18,22 @@ class _Array extends Type<Array<unknown>> {
 
     this.siero.serializer.register ( value, context );
 
-    const values = arrayMap ( value, value => this.siero.serializer.serialize ( value, options, context ) );
+    const values = new Array<string> ( value.length );
+
+    for ( let i = 0, l = value.length; i < l; i++ ) {
+
+      if ( i in value ) { // Value
+
+        values[i] = this.siero.serializer.serialize ( value[i], options, context );
+
+      } else { // Hole
+
+        values[i] = '';
+
+      }
+
+    }
+
     const packed = this.siero.packer.pack ( values );
 
     return packed;
@@ -35,7 +49,11 @@ class _Array extends Type<Array<unknown>> {
 
     for ( let i = 0, l = unpacked.length; i < l; i++ ) {
 
-      values[i] = this.siero.serializer.deserialize ( unpacked[i], options, context );
+      if ( unpacked[i] ) { // Value
+
+        values[i] = this.siero.serializer.deserialize ( unpacked[i], options, context );
+
+      }
 
     }
 
