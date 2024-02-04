@@ -10,7 +10,7 @@ abstract class AbstractBigInt<T extends BigIntTypedArray> extends Abstract<T, bi
 
   /* CONSTRUCTOR */
 
-  constructor ( siero: SieroInstance, Constructor: Constructor<T, [Iterable<bigint>]> ) {
+  constructor ( siero: SieroInstance, Constructor: Constructor<T, [ArrayBuffer, number, number]> ) {
 
     super ( siero, Constructor, BigInt );
 

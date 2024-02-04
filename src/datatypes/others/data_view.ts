@@ -24,7 +24,7 @@ class _DataView extends Type<DataView> {
 
   deserialize ( value: string, options: DeserializeOptions, context: DeserializeContext ): DataView {
 
-    const buffer = this.siero.serializer.deserialize ( value, options, context );
+    const buffer = this.siero.serializer.deserialize ( value, options, context ) as ArrayBuffer; //TSC
     const dataView = new DataView ( buffer );
 
     this.siero.serializer.deserialized ( dataView, context );

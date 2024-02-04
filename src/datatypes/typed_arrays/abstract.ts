@@ -14,12 +14,12 @@ abstract class Abstract<T extends TypedArray, U extends bigint | number> extends
 
   /* VARIABLES */
 
-  readonly Constructor: Constructor<T, [Iterable<U>, number, number]>;
+  readonly Constructor: Constructor<T, [ArrayBuffer, number, number]>;
   readonly Parser: Parser<U>;
 
   /* CONSTRUCTOR */
 
-  constructor ( siero: SieroInstance, Constructor: Constructor<T, [Iterable<U>]>, Parser: Parser<U> ) {
+  constructor ( siero: SieroInstance, Constructor: Constructor<T, [ArrayBuffer, number, number]>, Parser: Parser<U> ) {
 
     super ( siero );
 
@@ -46,7 +46,7 @@ abstract class Abstract<T extends TypedArray, U extends bigint | number> extends
   deserialize ( value: string, options: DeserializeOptions, context: DeserializeContext ): T {
 
     const unpacked = this.siero.packer.unpack ( value );
-    const buffer = this.siero.serializer.deserialize ( unpacked[0], options, context );
+    const buffer = this.siero.serializer.deserialize ( unpacked[0], options, context ) as ArrayBuffer; //TSC
     const offset = parseInt ( unpacked[1] );
     const length = parseInt ( unpacked[2] );
     const typedArray = new this.Constructor ( buffer, offset, length );

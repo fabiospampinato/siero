@@ -10,7 +10,7 @@ abstract class AbstractNumber<T extends NumberTypedArray> extends Abstract<T, nu
 
   /* CONSTRUCTOR */
 
-  constructor ( siero: SieroInstance, Constructor: Constructor<T, [Iterable<number>]> ) {
+  constructor ( siero: SieroInstance, Constructor: Constructor<T, [ArrayBuffer, number, number]> ) {
 
     super ( siero, Constructor, Number );
 
