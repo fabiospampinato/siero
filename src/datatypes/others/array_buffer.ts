@@ -6,6 +6,8 @@ import type {DeserializeContext, SerializeContext, DeserializeOptions, Serialize
 
 /* MAIN */
 
+//TODO: Maybe serialize the buffer to Base64, for smaller outputs (https://github.com/tc39/proposal-arraybuffer-base64)
+
 class _ArrayBuffer extends Type<ArrayBuffer> {
 
   /* VARIABLES */

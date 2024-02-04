@@ -416,6 +416,18 @@ describe ( 'Siero', () => {
 
     });
 
+    it ( 'uint8array (metadata)', () => {
+
+      const buffer = new Uint8Array ([ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]).buffer;
+      const uint8 = new Uint8Array ( buffer, 1, 3 );
+      const clone = deserialize ( serialize ( uint8 ) );
+
+      t.deepEqual ( uint8, clone );
+      t.is ( uint8.byteOffset, clone.byteOffset );
+      t.is ( uint8.byteLength, clone.byteLength );
+
+    });
+
     it ( 'uint16array', () => {
 
       testSerialization ( new Uint16Array () );

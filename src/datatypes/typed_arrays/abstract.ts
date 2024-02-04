@@ -10,14 +10,11 @@ type Parser<T> = ( value: string ) => T;
 
 /* MAIN */
 
-//TODO: Maybe serialize the buffer to Base64, for smaller outputs (https://github.com/tc39/proposal-arraybuffer-base64)
-//TODO: Maybe build this on top of the ArrayBuffer type
-
 abstract class Abstract<T extends TypedArray, U extends bigint | number> extends Type<T> {
 
   /* VARIABLES */
 
-  readonly Constructor: Constructor<T, [Iterable<U>]>;
+  readonly Constructor: Constructor<T, [Iterable<U>, number, number]>;
   readonly Parser: Parser<U>;
 
   /* CONSTRUCTOR */
@@ -35,16 +32,24 @@ abstract class Abstract<T extends TypedArray, U extends bigint | number> extends
 
   serialize ( value: T, options: SerializeOptions, context: SerializeContext ): string {
 
+    const buffer = this.siero.serializer.serialize ( value.buffer, options, context );
+    const offset = `${value.byteOffset}`;
+    const length = `${value.length}`;
+    const packed = this.siero.packer.pack ([ buffer, offset, length ]);
+
     this.siero.serializer.serialized ( value, context );
 
-    return value.toString ();
+    return packed;
 
   }
 
   deserialize ( value: string, options: DeserializeOptions, context: DeserializeContext ): T {
 
-    const values = value ? value.split ( ',' ).map ( this.Parser ) : [];
-    const typedArray = new this.Constructor ( values );
+    const unpacked = this.siero.packer.unpack ( value );
+    const buffer = this.siero.serializer.deserialize ( unpacked[0], options, context );
+    const offset = parseInt ( unpacked[1] );
+    const length = parseInt ( unpacked[2] );
+    const typedArray = new this.Constructor ( buffer, offset, length );
 
     this.siero.serializer.deserialized ( typedArray, context );
 
