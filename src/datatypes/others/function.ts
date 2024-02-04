@@ -7,7 +7,7 @@ import type {DeserializeContext, SerializeContext, DeserializeOptions, Serialize
 
 /* MAIN */
 
-//TODO: Use WeakMaps + FinalizationRegistry, to handle the case where the function is just garbage-collected without settling
+//TODO: Use WeakMaps + FinalizationRegistry, to not hold into memory indefinitely
 
 class _Function extends Type<Function> {
 

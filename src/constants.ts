@@ -19,6 +19,7 @@ import BoxedSymbol from './datatypes/boxed_primitives/symbol';
 
 import Array from './datatypes/others/array';
 import ArrayBuffer from './datatypes/others/array_buffer';
+import DataView from './datatypes/others/data_view';
 import Date from './datatypes/others/date';
 import Function from './datatypes/others/function';
 import Map from './datatypes/others/map';
@@ -69,6 +70,7 @@ const TYPES = <const> [
 
   Array,
   ArrayBuffer,
+  DataView,
   Date,
   Function,
   Map,

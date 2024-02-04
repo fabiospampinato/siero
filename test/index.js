@@ -68,6 +68,13 @@ describe ( 'Siero', () => {
 
     });
 
+    it ( 'dataview', () => {
+
+      testSerialization ( new DataView ( new ArrayBuffer () ) );
+      testSerialization ( new DataView ( new ArrayBuffer ( 3 ) ) );
+
+    });
+
     it ( 'date', () => {
 
       testSerialization ( new Date () );
@@ -443,6 +450,12 @@ describe ( 'Siero', () => {
     it ( 'array buffer', () => {
 
       testReferences ( new Int8Array ([ 1, 2, 3 ]).buffer );
+
+    });
+
+    it ( 'dataview', () => {
+
+      testReferences ( new DataView ( new ArrayBuffer ( 3 ) ) );
 
     });
 

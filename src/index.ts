@@ -5,8 +5,7 @@ import Siero from './siero';
 
 /* MAIN */
 
-//TODO: Support AggregateError
-//TODO: Support DataView
+//TODO: Maybe support: AggregateError
 
 const __module = () => ({ default: Siero });
 const {call, register, serialize, deserialize} = new Siero ();

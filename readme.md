@@ -30,14 +30,14 @@ npm install --save siero
 | ---------------- | ---------------- | --------------------- | ------------------------- | ------------------- |
 | [`BigInt`][0]    | [`BigInt`][0]    | [`Error`][6]          | [`BigInt64Array`][13]     | [`Array`][24]       |
 | [`Boolean`][1]   | [`Boolean`][1]   | [`EvalError`][7]      | [`BigUint64Array`][14]    | [`ArrayBuffer`][25] |
-| [`Null`][2]      | [`Number`][3]    | [`RangeError`][8]     | [`Float32Array`][15]      | [`Date`][26]        |
-| [`Number`][3]    | [`String`][4]    | [`ReferenceError`][9] | [`Float64Array`][16]      | [`Function`][32]    |
-| [`String`][4]    | [`Symbol`][31]   | [`SyntaxError`][10]   | [`Int8Array`][17]         | [`Promise`][33]     |
-| [`Symbol`][31]   |                  | [`TypeError`][11]     | [`Int16Array`][18]        | [`RegExp`][27]      |
-| [`Undefined`][5] |                  | [`URIError`][12]      | [`Int32Array`][19]        | [`Map`][28]         |
-|                  |                  |                       | [`Uint8Array`][20]        | [`Set`][29]         |
-|                  |                  |                       | [`Uint16Array`][21]       | [`PlainObject`][30] |
-|                  |                  |                       | [`Uint32Array`][22]       |                     |
+| [`Null`][2]      | [`Number`][3]    | [`RangeError`][8]     | [`Float32Array`][15]      | [`DataView`][34]    |
+| [`Number`][3]    | [`String`][4]    | [`ReferenceError`][9] | [`Float64Array`][16]      | [`Date`][26]        |
+| [`String`][4]    | [`Symbol`][31]   | [`SyntaxError`][10]   | [`Int8Array`][17]         | [`Function`][32]    |
+| [`Symbol`][31]   |                  | [`TypeError`][11]     | [`Int16Array`][18]        | [`Promise`][33]     |
+| [`Undefined`][5] |                  | [`URIError`][12]      | [`Int32Array`][19]        | [`RegExp`][27]      |
+|                  |                  |                       | [`Uint8Array`][20]        | [`Map`][28]         |
+|                  |                  |                       | [`Uint16Array`][21]       | [`Set`][29]         |
+|                  |                  |                       | [`Uint32Array`][22]       | [`PlainObject`][30] |
 |                  |                  |                       | [`Uint8ClampedArray`][23] |                     |
 
 [0]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt
@@ -77,6 +77,7 @@ npm install --save siero
 [30]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
 [32]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions
 [33]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+[34]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView
 
 ## Usage
 
