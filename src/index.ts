@@ -9,10 +9,8 @@ import Siero from './siero';
 //TODO: Support DataView
 
 const __module = () => ({ default: Siero });
-const siero = new Siero ();
-const {serialize, deserialize} = siero;
-const __internals = siero;
+const {call, register, serialize, deserialize} = new Siero ();
 
 /* EXPORT */
 
-export {__module, __internals, serialize, deserialize};
+export {__module, call, register, serialize, deserialize};
