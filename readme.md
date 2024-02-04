@@ -13,7 +13,7 @@ Check out [`siero-worker`](https://github.com/fabiospampinato/siero-worker) for 
 - Prevent-extension/sealed/frozen flags are also only preserved for plain objects.
 - Custom configurable/enumerable/writable flags for properties are not preserved at all.
 - Getter/setter properties are not preserved as functions, they will instead be resolved.
-- For error objects only the `name`, `message`, `stack` and `cause` properties are preserved.
+- For error objects only the `name`, `message`, `stack`, `cause` and `errors` properties are preserved.
 - The specific type of function constructor (regular, arrow, async etc.) is not preserved.
 - Deserialized functions will always return a Promise, even if the original function didn't.
 - Generators and async generators are not currently serializable.
@@ -26,19 +26,19 @@ npm install --save siero
 
 ## Supported Types
 
-| Primitives       | Boxed Primitives | Errors                | Typed Arrays              | Others              |
-| ---------------- | ---------------- | --------------------- | ------------------------- | ------------------- |
-| [`BigInt`][0]    | [`BigInt`][0]    | [`Error`][6]          | [`BigInt64Array`][13]     | [`Array`][24]       |
-| [`Boolean`][1]   | [`Boolean`][1]   | [`EvalError`][7]      | [`BigUint64Array`][14]    | [`ArrayBuffer`][25] |
-| [`Null`][2]      | [`Number`][3]    | [`RangeError`][8]     | [`Float32Array`][15]      | [`DataView`][34]    |
-| [`Number`][3]    | [`String`][4]    | [`ReferenceError`][9] | [`Float64Array`][16]      | [`Date`][26]        |
-| [`String`][4]    | [`Symbol`][31]   | [`SyntaxError`][10]   | [`Int8Array`][17]         | [`Function`][32]    |
-| [`Symbol`][31]   |                  | [`TypeError`][11]     | [`Int16Array`][18]        | [`Promise`][33]     |
-| [`Undefined`][5] |                  | [`URIError`][12]      | [`Int32Array`][19]        | [`RegExp`][27]      |
-|                  |                  |                       | [`Uint8Array`][20]        | [`Map`][28]         |
-|                  |                  |                       | [`Uint16Array`][21]       | [`Set`][29]         |
-|                  |                  |                       | [`Uint32Array`][22]       | [`PlainObject`][30] |
-|                  |                  |                       | [`Uint8ClampedArray`][23] |                     |
+| Primitives       | Boxed Primitives | Errors                 | Typed Arrays              | Others              |
+| ---------------- | ---------------- | ---------------------- | ------------------------- | ------------------- |
+| [`BigInt`][0]    | [`BigInt`][0]    | [`Error`][6]           | [`BigInt64Array`][13]     | [`Array`][24]       |
+| [`Boolean`][1]   | [`Boolean`][1]   | [`EvalError`][7]       | [`BigUint64Array`][14]    | [`ArrayBuffer`][25] |
+| [`Null`][2]      | [`Number`][3]    | [`RangeError`][8]      | [`Float32Array`][15]      | [`DataView`][34]    |
+| [`Number`][3]    | [`String`][4]    | [`ReferenceError`][9]  | [`Float64Array`][16]      | [`Date`][26]        |
+| [`String`][4]    | [`Symbol`][31]   | [`SyntaxError`][10]    | [`Int8Array`][17]         | [`Function`][32]    |
+| [`Symbol`][31]   |                  | [`TypeError`][11]      | [`Int16Array`][18]        | [`Promise`][33]     |
+| [`Undefined`][5] |                  | [`URIError`][12]       | [`Int32Array`][19]        | [`RegExp`][27]      |
+|                  |                  | [`AggregateError`][35] | [`Uint8Array`][20]        | [`Map`][28]         |
+|                  |                  |                        | [`Uint16Array`][21]       | [`Set`][29]         |
+|                  |                  |                        | [`Uint32Array`][22]       | [`PlainObject`][30] |
+|                  |                  |                        | [`Uint8ClampedArray`][23] |                     |
 
 [0]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt
 [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean
@@ -55,6 +55,7 @@ npm install --save siero
 [10]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError
 [11]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError
 [12]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError
+[35]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AggregateError
 
 [13]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt64Array
 [14]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigUint64Array

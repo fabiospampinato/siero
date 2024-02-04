@@ -27,6 +27,7 @@ import Promise from './datatypes/others/promise';
 import RegExp from './datatypes/others/regexp';
 import Set from './datatypes/others/set';
 
+import AggregateError from './datatypes/errors/aggregate_error';
 import EvalError from './datatypes/errors/eval_error';
 import RangeError from './datatypes/errors/range_error';
 import ReferenceError from './datatypes/errors/reference_error';
@@ -78,6 +79,7 @@ const TYPES = <const> [
   RegExp,
   Set,
 
+  AggregateError,
   EvalError,
   RangeError,
   ReferenceError,

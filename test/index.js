@@ -325,6 +325,13 @@ describe ( 'Siero', () => {
 
     });
 
+    it ( 'aggregate error', () => {
+
+      testSerialization ( new AggregateError ( [] ) );
+      testSerialization ( new AggregateError ( [new Error ( 'one' ), new Error ( 'two' )], 'asd' ) );
+
+    });
+
     it ( 'eval error', () => {
 
       testSerialization ( new EvalError () );
@@ -570,6 +577,13 @@ describe ( 'Siero', () => {
 
       testReferences ( new Error () );
       testReferences ( new Error ( 'asd' ) );
+
+    });
+
+    it ( 'aggregate error', () => {
+
+      testReferences ( new AggregateError ( [] ) );
+      testReferences ( new AggregateError ( [new Error ( 'one' ), new Error ( 'two' )], 'asd' ) );
 
     });
 

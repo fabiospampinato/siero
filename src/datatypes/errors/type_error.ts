@@ -1,12 +1,12 @@
 
 /* IMPORT */
 
-import Abstract from './abstract';
+import AbstractRegular from './abstract_regular';
 import type {SieroInstance} from '../../types';
 
 /* MAIN */
 
-class _TypeError extends Abstract<TypeError> {
+class _TypeError extends AbstractRegular<TypeError> {
 
   /* CONSTRUCTOR */
 
