@@ -2,7 +2,7 @@
   "name": "siero",
   "repository": "github:fabiospampinato/siero",
   "description": "A serialization library that can handle functions, promises and symbols too.",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "type": "module",
   "main": "bundle/index.js",
   "exports": "./bundle/index.js",
