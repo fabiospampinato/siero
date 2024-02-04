@@ -16,16 +16,24 @@ class _DataView extends Type<DataView> {
 
   serialize ( value: DataView, options: SerializeOptions, context: SerializeContext ): string {
 
+    const buffer = this.siero.serializer.serialize ( value.buffer, options, context );
+    const offset = `${value.byteOffset}`;
+    const length = `${value.byteLength}`;
+    const packed = this.siero.packer.pack ([ buffer, offset, length ]);
+
     this.siero.serializer.serialized ( value, context );
 
-    return this.siero.serializer.serialize ( value.buffer, options, context );
+    return packed;
 
   }
 
   deserialize ( value: string, options: DeserializeOptions, context: DeserializeContext ): DataView {
 
-    const buffer = this.siero.serializer.deserialize ( value, options, context ) as ArrayBuffer; //TSC
-    const dataView = new DataView ( buffer );
+    const unpacked = this.siero.packer.unpack ( value );
+    const buffer = this.siero.serializer.deserialize ( unpacked[0], options, context ) as ArrayBuffer; //TSC
+    const offset = parseInt ( unpacked[1] );
+    const length = parseInt ( unpacked[2] );
+    const dataView = new DataView ( buffer, offset, length );
 
     this.siero.serializer.deserialized ( dataView, context );
 
