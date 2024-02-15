@@ -8,6 +8,8 @@ import type {ReferenceContext, DeserializeContext, SerializeContext, Deserialize
 
 /* MAIN */
 
+//TODO: Add support for "replacer" and "reviver", maybe just named "transform"
+
 class Serializer extends Addon {
 
   /* VARIABLES */
