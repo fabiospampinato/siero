@@ -2,6 +2,7 @@
 /* IMPORT */
 
 import Reference from './datatypes/special/reference';
+import Serialized from './datatypes/special/serialized';
 
 import BigInt from './datatypes/primitives/bigint';
 import Boolean from './datatypes/primitives/boolean';
@@ -54,6 +55,7 @@ import PlainObject from './datatypes/others/plain_object';
 
 const TYPES = <const> [
   Reference,
+  Serialized,
 
   BigInt,
   Boolean,

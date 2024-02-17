@@ -2,6 +2,7 @@
 /* IMPORT */
 
 import {mapGetOrSet, promiseWithResolvers, resolve} from '../../utils';
+import ReferenceContext from '../special/reference.context';
 import Type from '../type';
 import type {DeserializeContext, SerializeContext, DeserializeOptions, SerializeOptions, SieroInstance} from '../../types';
 
@@ -35,7 +36,7 @@ class _Function extends Type<Function> {
 
     resolve ( fn, args, ( positive, value ) => {
 
-      this.siero.realms.call ( targetRealm, 'function.settle', [id, positive, value] );
+      this.siero.realms.call ( targetRealm, 'function.settle', [id, ...this.siero.serializer.normalize ( positive, value, { realm: targetRealm }, new ReferenceContext () )] );
 
     });
 

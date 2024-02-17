@@ -3,6 +3,7 @@
 
 import {TYPES} from '../constants';
 import Reference from '../datatypes/special/reference';
+import Serialized from '../datatypes/special/serialized';
 import Addon from './addon';
 import type {ReferenceContext, DeserializeContext, SerializeContext, DeserializeOptions, SerializeOptions, TypeInstance, SieroInstance} from '../types';
 
@@ -23,6 +24,7 @@ class Serializer extends Addon {
   private typeof2type: Map<unknown, TypeInstance>;
 
   private reference: Reference;
+  private serialized2: Serialized;
 
   /* CONSTRUCTOR */
 
@@ -44,6 +46,7 @@ class Serializer extends Addon {
     this.value2type = new Map ( this.types.map ( type => [type.value, type] ) );
 
     this.reference = this.types[0] as Reference; //TSC
+    this.serialized2 = this.types[1] as Serialized; //TSC //TODO: Find a non-stupid name for this
 
   }
 
@@ -71,6 +74,22 @@ class Serializer extends Addon {
     } else {
 
       return this.typeof2type.get ( type );
+
+    }
+
+  };
+
+  normalize = ( positive: boolean, value: unknown, options: SerializeOptions, context: SerializeContext ): [positive: boolean, value: unknown] => { // This makes sure we are actually always passing around serializable values //TODO: Maybe move this elsewhere
+
+    try {
+
+      const serialized = this.serialize ( value, options, context );
+
+      return [positive, this.serialized2.wrap ( serialized )];
+
+    } catch ( error: unknown ) {
+
+      return this.normalize ( false, error, options, context );
 
     }
 

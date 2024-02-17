@@ -2,6 +2,7 @@
 /* IMPORT */
 
 import {mapGetOrSet, promiseWithResolvers} from '../../utils';
+import ReferenceContext from '../special/reference.context';
 import Type from '../type';
 import type {DeserializeContext, SerializeContext, DeserializeOptions, SerializeOptions, SieroInstance} from '../../types';
 
@@ -40,7 +41,7 @@ class _Promise extends Type<Promise<unknown>> {
         if ( realm === this.siero.realm ) continue;
         if ( !this.siero.realms.has ( realm ) ) continue;
 
-        this.siero.realms.call ( realm, 'promise.settle', [id, positive, value] );
+        this.siero.realms.call ( realm, 'promise.settle', [id, ...this.siero.serializer.normalize ( positive, value, { realm }, new ReferenceContext () )] );
 
       }
 
