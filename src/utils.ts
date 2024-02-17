@@ -47,6 +47,41 @@ const promiseWithResolvers = <T> () => {
 
 };
 
+const resolve = ( fn: Function | undefined, args: unknown[], callback: ( positive: boolean, result: unknown ) => void ): void => {
+
+  if ( !fn ) {
+
+    callback ( false, new ReferenceError ( 'function is not found' ) );
+
+  } else {
+
+    try {
+
+      const result = fn ( ...args );
+
+      if ( result instanceof Promise ) {
+
+        const onResolve = ( result: unknown ) => callback ( true, result );
+        const onReject = ( error: unknown ) => callback ( false, error );
+
+        result.then ( onResolve, onReject );
+
+      } else {
+
+        callback ( true, result );
+
+      }
+
+    } catch ( error: unknown ) {
+
+      callback ( false, error );
+
+    }
+
+  }
+
+};
+
 /* EXPORT */
 
-export {castArray, getRandomId, mapGetOrSet, noop, promiseWithResolvers};
+export {castArray, getRandomId, mapGetOrSet, noop, promiseWithResolvers, resolve};

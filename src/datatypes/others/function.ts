@@ -1,7 +1,7 @@
 
 /* IMPORT */
 
-import {mapGetOrSet, promiseWithResolvers} from '../../utils';
+import {mapGetOrSet, promiseWithResolvers, resolve} from '../../utils';
 import Type from '../type';
 import type {DeserializeContext, SerializeContext, DeserializeOptions, SerializeOptions, SieroInstance} from '../../types';
 
@@ -33,36 +33,11 @@ class _Function extends Type<Function> {
     const [targetRealm, sourceRealm, fnId, resultId] = id.split ( '-' );
     const fn = this.siero.contexts.id2function[`${sourceRealm}-${fnId}`];
 
-    if ( !fn ) {
+    resolve ( fn, args, ( positive, value ) => {
 
-      this.siero.realms.call ( targetRealm, 'function.settle', [id, false, new ReferenceError ( 'Function not found' )] );
+      this.siero.realms.call ( targetRealm, 'function.settle', [id, positive, value] );
 
-    } else {
-
-      try {
-
-        const result = fn ( ...args );
-
-        if ( result instanceof Promise ) {
-
-          const onResolve = ( value: unknown ) => this.siero.realms.call ( targetRealm, 'function.settle', [id, true, value] );
-          const onReject = ( error: unknown ) => this.siero.realms.call ( targetRealm, 'function.settle', [id, false, error] );
-
-          result.then ( onResolve, onReject );
-
-        } else {
-
-          this.siero.realms.call ( targetRealm, 'function.settle', [id, true, result] );
-
-        }
-
-      } catch ( error: unknown ) {
-
-        this.siero.realms.call ( targetRealm, 'function.settle', [id, false, error] );
-
-      }
-
-    }
+    });
 
   }
 
