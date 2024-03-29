@@ -19,9 +19,13 @@ class _Symbol extends Type<symbol> {
 
   serialize ( value: symbol, options: SerializeOptions, context: SerializeContext ): string {
 
-    const known = Known.getName ( value );
+    const sharedKey = Symbol.keyFor ( value );
 
-    if ( known ) return known;
+    if ( sharedKey ) return `_${sharedKey}`;
+
+    const knownName = Known.getName ( value );
+
+    if ( knownName ) return knownName;
 
     const id = ( this.siero.contexts.symbol2id[value] ||= `${this.siero.realm}-${this.siero.contexts.symbolCounter++}` );
     const symbol = ( this.siero.contexts.id2symbol[id] ||= value );
@@ -32,9 +36,13 @@ class _Symbol extends Type<symbol> {
 
   deserialize ( value: string, options: DeserializeOptions, context: DeserializeContext ): symbol {
 
-    const known = Known.getSymbol ( value );
+    const sharedSymbol = value[0] === '_' && Symbol.for ( value.slice ( 1 ) );
 
-    if ( known ) return known;
+    if ( sharedSymbol ) return sharedSymbol;
+
+    const knownSymbol = Known.getSymbol ( value );
+
+    if ( knownSymbol ) return knownSymbol;
 
     const symbol = ( this.siero.contexts.id2symbol[value] ||= Symbol () );
     const id = ( this.siero.contexts.symbol2id[symbol] ||= value );

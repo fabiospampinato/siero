@@ -8,6 +8,7 @@ Check out [`siero-worker`](https://github.com/fabiospampinato/siero-worker) for 
 
 ## Limitations
 
+- Symbols that are created independently in two realms, without `Symbol.for`, won't be equal to each other.
 - Symbol properties are only preserved if attached to plain objects.
 - Arbitrary custom properties are also only preserved if attached to plain objects.
 - Prevent-extension/sealed/frozen flags are also only preserved for plain objects.
